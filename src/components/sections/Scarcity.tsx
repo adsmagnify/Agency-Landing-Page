@@ -18,7 +18,7 @@ export function Scarcity() {
   ];
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-ink-950 via-ink-900 to-ink-950 py-16 sm:py-24 lg:py-28">
+    <section className="relative overflow-hidden bg-gradient-to-br from-ink-950 via-ink-900 to-ink-950 py-14 sm:py-16 lg:py-20">
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-20 [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,black,transparent)]" />
       <div className="pointer-events-none absolute -top-20 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-brand-500/25 blur-3xl" />
       <div className="pointer-events-none absolute right-0 bottom-0 h-64 w-64 rounded-full bg-cyan-500/15 blur-3xl" />

@@ -8,7 +8,7 @@ export function MidCta({
   sub: string;
 }) {
   return (
-    <div className="flex flex-col items-center gap-3 pt-4 text-center sm:pt-6">
+    <div className="flex flex-col items-center gap-2.5 text-center">
       <Button href="#apply" variant="primary" showArrow>
         {label}
       </Button>

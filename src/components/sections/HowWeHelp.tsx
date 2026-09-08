@@ -18,7 +18,7 @@ export function HowWeHelp() {
 
       <ProcessTimeline steps={[...systemSteps]} headingId="how-we-help" />
 
-      <Reveal className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-ink-950 via-ink-900 to-ink-950 px-6 py-12 text-center shadow-xl sm:rounded-3xl sm:px-16 sm:py-16">
+      <Reveal className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-ink-950 via-ink-900 to-ink-950 px-6 py-10 text-center shadow-xl sm:rounded-3xl sm:px-12 sm:py-12">
         <div className="pointer-events-none absolute inset-0 bg-grid opacity-20 [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,black,transparent)]" />
         <div className="pointer-events-none absolute -top-20 -left-20 h-64 w-64 rounded-full bg-brand-500/20 blur-3xl" />
         <div className="pointer-events-none absolute -right-20 -bottom-20 h-64 w-64 rounded-full bg-cyan-500/20 blur-3xl" />

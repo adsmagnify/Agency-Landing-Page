@@ -41,7 +41,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative overflow-hidden pt-32 pb-12 sm:pt-40 sm:pb-16 lg:pt-44 lg:pb-20"
+      className="relative overflow-hidden pt-28 pb-10 sm:pt-36 sm:pb-12 lg:pt-40 lg:pb-14"
     >
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-brand-50 via-paper to-paper" />
       <div className="pointer-events-none absolute inset-0 bg-grid [mask-image:radial-gradient(ellipse_65%_55%_at_50%_0%,black,transparent)]" />
@@ -143,8 +143,8 @@ export function Hero() {
           </motion.p>
         </motion.div>
 
-        <div className="relative mt-14 w-full sm:mt-20">
-          <p className="mb-6 text-[0.7rem] font-semibold tracking-[0.22em] text-brand-500 uppercase sm:mb-8">
+        <div className="relative mt-10 w-full sm:mt-14">
+          <p className="mb-5 text-[0.7rem] font-semibold tracking-[0.22em] text-brand-500 uppercase sm:mb-6">
             Trusted by education institutes filling batches
           </p>
           <StaggerGroup className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5">

@@ -157,14 +157,14 @@ export function ProcessTimeline({
         />
       </div>
 
-      <ol className="relative flex flex-col gap-14 lg:gap-4">
+      <ol className="relative flex flex-col gap-8 lg:gap-2">
         {steps.map((step, index) => {
           const align = index % 2 === 0 ? "left" : "right";
 
           return (
             <li
               key={step.step}
-              className="relative grid grid-cols-[3.5rem_minmax(0,1fr)] items-center lg:grid-cols-[minmax(0,1fr)_5.5rem_minmax(0,1fr)] lg:py-6"
+              className="relative grid grid-cols-[3.5rem_minmax(0,1fr)] items-center lg:grid-cols-[minmax(0,1fr)_5.5rem_minmax(0,1fr)] lg:py-4"
             >
               <div className="relative z-20 col-start-1 row-start-1 flex justify-center lg:col-start-2">
                 <TimelineNode label={step.step} />

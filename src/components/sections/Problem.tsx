@@ -8,7 +8,7 @@ import { problems } from "@/content/funnel";
 export function Problem() {
   return (
     <Section id="problem" border>
-      <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16 xl:gap-20">
+      <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-12">
         <div className="flex flex-col gap-7 lg:sticky lg:top-36">
           <SectionHeading
             eyebrow="The Problem"

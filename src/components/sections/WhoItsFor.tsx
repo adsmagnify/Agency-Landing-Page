@@ -36,7 +36,7 @@ export function WhoItsFor() {
           const Icon = nicheIcons[niche.key];
           return (
             <StaggerItem key={niche.key}>
-              <article className="card-surface group flex h-full min-h-[8.75rem] flex-col items-center justify-center gap-3.5 px-4 py-6 text-center sm:min-h-[10rem] sm:gap-4 sm:px-5 sm:py-7">
+              <article className="card-surface group flex h-full min-h-[7.5rem] flex-col items-center justify-center gap-3 px-4 py-5 text-center sm:min-h-[8.5rem] sm:gap-3.5 sm:px-5 sm:py-6">
                 <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 transition-all duration-300 group-hover:scale-105 group-hover:bg-brand-600 group-hover:text-white">
                   <Icon size={24} aria-hidden />
                 </span>
