@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui/Container";
+import { Atmosphere } from "@/components/ui/Atmosphere";
 import { cn } from "@/lib/utils";
 
 type SectionVariant = "default" | "compact" | "band" | "flush";
@@ -23,6 +24,7 @@ export function Section({
   gap = "14",
   border = false,
   container = true,
+  glow,
   className,
   containerClassName,
   children,
@@ -32,10 +34,11 @@ export function Section({
   gap?: SectionGap;
   border?: boolean;
   container?: boolean;
+  glow?: "navy" | "gold" | "mesh";
   containerClassName?: string;
 }) {
   const content = container ? (
-    <Container className={cn(gapClasses[gap], containerClassName)}>
+    <Container className={cn("relative", gapClasses[gap], containerClassName)}>
       {children}
     </Container>
   ) : (
@@ -45,13 +48,16 @@ export function Section({
   return (
     <section
       className={cn(
+        "relative",
         variantClasses[variant],
         border && "border-section",
         props.id && "scroll-mt-32 sm:scroll-mt-36",
+        glow && "overflow-hidden",
         className
       )}
       {...props}
     >
+      {glow && <Atmosphere tone={glow} />}
       {content}
     </section>
   );

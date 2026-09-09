@@ -1,13 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import { educationClients } from "@/content/funnel";
-import { StaggerGroup, StaggerItem } from "@/components/motion/StaggerGroup";
-import { cn } from "@/lib/utils";
 
 const rejected = [
   "Buying More Leads",
@@ -20,9 +16,9 @@ function Stamp({ delay }: { delay: number }) {
   return (
     <motion.span
       aria-hidden
-      className="inline-block origin-center select-none text-[1.15em] leading-none"
+      className="inline-block origin-center select-none font-bold text-signal"
       initial={{ scale: 1.85, rotate: -28, opacity: 0 }}
-      animate={{ scale: 1, rotate: -14, opacity: 1 }}
+      animate={{ scale: 1, rotate: -12, opacity: 1 }}
       transition={{
         type: "spring",
         stiffness: 460,
@@ -30,147 +26,73 @@ function Stamp({ delay }: { delay: number }) {
         delay,
       }}
     >
-      ❌
+      ✕
     </motion.span>
   );
 }
-
-const ease = [0.22, 1, 0.36, 1] as const;
 
 export function Hero() {
   return (
     <section
       id="top"
-      className="relative overflow-hidden pt-28 pb-10 sm:pt-36 sm:pb-12 lg:pt-40 lg:pb-14"
+      className="relative flex min-h-[560px] items-center overflow-hidden"
     >
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-brand-50 via-paper to-paper" />
-      <div className="pointer-events-none absolute inset-0 bg-grid [mask-image:radial-gradient(ellipse_65%_55%_at_50%_0%,black,transparent)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(80%_70%_at_50%_-10%,rgba(0,74,173,.45),transparent_58%),linear-gradient(180deg,#070911,#0a1328_48%,#070911)]" />
       <div className="pointer-events-none absolute inset-0 bg-noise" />
-      <div className="pointer-events-none absolute top-[-10rem] left-1/2 -ml-96 h-[32rem] w-[48rem] rounded-full bg-brand-500/25 blur-[120px] sm:animate-drift-primary" />
-      <div className="pointer-events-none absolute top-16 right-[6%] hidden h-64 w-64 rounded-full bg-cyan-400/30 blur-[100px] sm:block sm:animate-drift-secondary" />
-      <div className="pointer-events-none absolute bottom-[-6rem] left-[6%] hidden h-72 w-72 rounded-full bg-brand-400/15 blur-[100px] sm:block sm:animate-drift-slow" />
+      <div className="pointer-events-none absolute top-8 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-brand-500/25 blur-[100px]" />
 
-      <Container className="relative flex min-w-0 flex-col items-center text-center">
-        <motion.div
-          className="flex w-full max-w-3xl flex-col items-center gap-5 sm:gap-6"
-          initial="hidden"
-          animate="show"
-          variants={{
-            hidden: {},
-            show: { transition: { staggerChildren: 0.09, delayChildren: 0.08 } },
-          }}
-        >
-          <motion.div
-            className="flex flex-wrap items-center justify-center gap-2"
-            variants={{
-              hidden: { opacity: 0, y: 16 },
-              show: { opacity: 1, y: 0, transition: { duration: 0.55, ease } },
-            }}
-          >
-            <Badge size="compact" className="animate-badge-glow">
-              Student Acquisition
-            </Badge>
+      <Container className="relative z-[2] py-16 sm:py-[70px]">
+        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <div className="mb-5 flex flex-wrap items-center justify-center gap-2.5">
+            <Badge size="compact">Student Acquisition</Badge>
+            <Badge size="compact">Coaching Institutes</Badge>
             <Badge size="compact">Education Institutes</Badge>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            className="flex w-full flex-col items-center gap-4 sm:gap-5"
-            variants={{
-              hidden: { opacity: 0, y: 22 },
-              show: { opacity: 1, y: 0, transition: { duration: 0.7, ease } },
-            }}
-          >
-            <span className="font-display text-[1.65rem] font-medium leading-[1.15] tracking-tight text-ink-950 sm:text-4xl sm:leading-[1.12] lg:text-[2.75rem] lg:leading-[1.1]">
-              Fill every batch with
-              <span className="mt-1 block font-semibold text-brand-600 sm:mt-1.5">
-                paid enrollments
-              </span>
+          <h1 className="flex w-full flex-col items-center gap-5">
+            <span className="font-display text-[1.55rem] leading-[1.18] font-extrabold tracking-[-0.02em] text-white sm:text-[2.05rem] lg:text-[2.35rem]">
+              Fill Every Batch With
+              <span className="mt-1 block text-cyan-500">Paid Enrollments</span>
             </span>
-
-            <span className="flex max-w-xl flex-wrap items-center justify-center gap-x-2.5 gap-y-2 text-[0.85rem] font-medium leading-snug text-mist-400 sm:max-w-2xl sm:text-lg lg:text-xl">
-              <span className="font-display text-[0.7rem] font-semibold tracking-[0.18em] text-mist-500 uppercase sm:text-xs">
+            <span className="flex w-full max-w-2xl flex-col items-center gap-2.5">
+              <span className="font-display text-[0.7rem] font-semibold tracking-[0.18em] text-cyan-500 uppercase sm:text-xs">
                 without
               </span>
-              {rejected.map((item, index) => (
-                <span
-                  key={item}
-                  className="inline-flex items-center gap-1 whitespace-nowrap font-display text-ink-800"
-                >
-                  {item}
-                  <Stamp delay={0.42 + index * 0.14} />
-                </span>
-              ))}
+              <span className="grid w-full grid-cols-2 gap-2 sm:grid-cols-4">
+                {rejected.map((item, index) => (
+                  <span
+                    key={item}
+                    className="inline-flex min-h-12 items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-2 text-center font-display text-[0.72rem] leading-tight text-white/85 sm:text-[0.78rem]"
+                  >
+                    <span className="leading-tight">{item}</span>
+                    <Stamp delay={0.42 + index * 0.14} />
+                  </span>
+                ))}
+              </span>
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            className="max-w-2xl text-sm leading-relaxed text-balance text-mist-400 sm:text-base sm:leading-relaxed"
-            variants={{
-              hidden: { opacity: 0, y: 16 },
-              show: { opacity: 1, y: 0, transition: { duration: 0.55, ease } },
-            }}
-          >
+          <p className="mt-6 max-w-[46ch] text-base leading-relaxed text-mist-400 sm:text-[1.05rem]">
             Indian parents spend more on their children&apos;s education than
             almost anything else. Yet most institutes still burn ad budget on
             leads that never enroll. We build the done-for-you Student
             Acquisition Funnel that turns your ad spend into admissions before
             the deadline closes.
-          </motion.p>
+          </p>
 
-          <motion.div
-            className="mt-1 flex w-full max-w-md flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:items-center sm:justify-center sm:gap-4"
-            variants={{
-              hidden: { opacity: 0, y: 16 },
-              show: { opacity: 1, y: 0, transition: { duration: 0.55, ease } },
-            }}
-          >
-            <Button href="#apply" variant="primary" showArrow className="w-full sm:w-auto">
+          <div className="mt-8 flex w-full flex-col items-stretch justify-center gap-3.5 sm:w-auto sm:flex-row sm:items-center">
+            <Button href="#apply" variant="primary" size="lg">
               Book My Free Strategy Call
             </Button>
-            <Button href="#solution" variant="secondary" className="w-full sm:w-auto">
+            <Button href="#solution" variant="ghost" size="lg">
               See The System
             </Button>
-          </motion.div>
+          </div>
 
-          <motion.p
-            className="text-xs text-mist-500 sm:text-sm"
-            variants={{
-              hidden: { opacity: 0 },
-              show: { opacity: 1, transition: { duration: 0.5 } },
-            }}
-          >
-            No pitch. We&apos;ll show you exactly where your admissions are leaking.
-          </motion.p>
-        </motion.div>
-
-        <div className="relative mt-10 w-full sm:mt-14">
-          <p className="mb-5 text-[0.7rem] font-semibold tracking-[0.22em] text-brand-500 uppercase sm:mb-6">
-            Trusted by education institutes filling batches
+          <p className="mt-4 rounded-full border border-cyan-500/25 bg-cyan-500/8 px-4 py-1.5 text-[0.82rem] text-mist-400">
+            No pitch. We&apos;ll show you exactly where your admissions are
+            leaking.
           </p>
-          <StaggerGroup className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5">
-            {educationClients.map((client, index) => (
-              <StaggerItem key={client.name}>
-                <div
-                  className={cn(
-                    "group flex h-[4.5rem] w-full items-center justify-center p-3 sm:h-24 sm:p-4",
-                    "onDark" in client && client.onDark
-                      ? "rounded-2xl border border-ink-800 bg-ink-950 shadow-sm transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-[3px] hover:border-ink-600 hover:shadow-[0_24px_60px_-28px_rgba(0,74,173,0.45)]"
-                      : "card-surface"
-                  )}
-                >
-                  <Image
-                    src={client.logo}
-                    alt={`${client.name} logo`}
-                    width={180}
-                    height={64}
-                    className="max-h-11 max-w-[88%] w-auto object-contain transition-transform duration-300 group-hover:scale-105 sm:max-h-14"
-                    sizes="(max-width: 640px) 42vw, (max-width: 1024px) 24vw, 180px"
-                    priority={index < 6}
-                  />
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
         </div>
       </Container>
     </section>

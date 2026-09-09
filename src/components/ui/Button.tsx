@@ -3,20 +3,31 @@ import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type ButtonVariant = "primary" | "secondary" | "ghost";
+type ButtonSize = "md" | "lg" | "xl" | "nav";
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "border-2 border-cyan-400/85 bg-gradient-to-r from-brand-500 to-brand-600 text-white animate-button-border-pulse hover:border-cyan-300 hover:shadow-[0_0_25px_rgba(255,211,77,0.65)] hover:brightness-110",
+    "bg-cyan-500 text-[#111] shadow-[0_6px_22px_rgba(255,198,25,.25)] hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(255,198,25,.4)]",
   secondary:
-    "glass-panel text-ink-950 hover:border-brand-400/60 hover:bg-brand-50",
-  ghost: "text-mist-500 hover:text-brand-600",
+    "bg-brand-600 text-white hover:bg-brand-500",
+  ghost:
+    "border-[1.5px] border-white/12 bg-transparent text-white shadow-none hover:border-cyan-500 hover:text-cyan-500",
+};
+
+const sizeStyles: Record<ButtonSize, string> = {
+  nav: "min-h-11 px-[22px] py-[11px] text-[0.9rem]",
+  md: "min-h-12 px-8 py-4 text-base",
+  lg: "min-h-14 px-10 py-[18px] text-[1.12rem]",
+  xl: "min-h-16 w-full px-10 py-5 text-[1.15rem]",
 };
 
 interface BaseProps {
   variant?: ButtonVariant;
+  size?: ButtonSize;
   className?: string;
   children: React.ReactNode;
   showArrow?: boolean;
+  pulse?: boolean;
 }
 
 interface LinkButtonProps extends BaseProps {
@@ -34,24 +45,32 @@ interface ClickButtonProps extends BaseProps {
 type ButtonProps = LinkButtonProps | ClickButtonProps;
 
 const baseClasses =
-  "group inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-all duration-200 ease-out sm:px-6";
+  "group inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg font-display font-bold transition-all duration-150 ease-out";
 
 export function Button({
   variant = "primary",
+  size = "md",
   className,
   children,
   showArrow = false,
+  pulse = false,
   href,
   ...rest
 }: ButtonProps) {
-  const classes = cn(baseClasses, variantStyles[variant], className);
+  const classes = cn(
+    baseClasses,
+    variantStyles[variant],
+    sizeStyles[size],
+    pulse && variant === "primary" && "animate-pulse-glow",
+    className
+  );
 
   const content = (
     <>
       {children}
       {showArrow && (
         <ArrowUpRight
-          size={16}
+          size={18}
           className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
         />
       )}

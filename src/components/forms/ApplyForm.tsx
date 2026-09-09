@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { niches } from "@/content/funnel";
+import { offerWindow } from "@/lib/constants";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -52,21 +53,21 @@ export function ApplyForm() {
   if (status === "success") {
     return (
       <div className="flex flex-col items-center gap-4 px-2 py-8 text-center sm:py-10">
-        <CheckCircle2 size={40} className="text-brand-500" />
-        <h3 className="text-xl font-semibold text-ink-950">
-          Application received
+        <CheckCircle2 size={40} className="text-cyan-500" />
+        <h3 className="text-xl font-semibold text-white">
+          You&apos;re in the queue
         </h3>
-        <p className="text-sm text-mist-400">
-          A member of our team will review your institute and get back within
-          one business day.
+        <p className="text-sm text-mist-500">
+          A strategist will review your institute and reach out within one
+          business day to book the call.
         </p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-      <div className="grid gap-5 sm:grid-cols-2">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Full name" name="name" required placeholder="Your name" />
         <Field
           label="Work email"
@@ -77,7 +78,7 @@ export function ApplyForm() {
         />
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2">
         <Field
           label="Institute name"
           name="company"
@@ -85,22 +86,23 @@ export function ApplyForm() {
           placeholder="Your institute"
         />
         <Field
-          label="Phone"
+          label="Phone / WhatsApp"
           name="phone"
           type="tel"
+          required
           placeholder="+91 9XXXXXXXXX"
         />
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2">
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-medium text-mist-300" htmlFor="instituteType">
+          <label className="text-sm font-medium text-mist-400" htmlFor="instituteType">
             Institute type
           </label>
           <select
             id="instituteType"
             name="instituteType"
-            className="field-input cursor-pointer"
+            className="field-input cursor-pointer bg-ink-900"
             defaultValue=""
           >
             <option value="" disabled>
@@ -114,13 +116,13 @@ export function ApplyForm() {
           </select>
         </div>
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-medium text-mist-300" htmlFor="budget">
+          <label className="text-sm font-medium text-mist-400" htmlFor="budget">
             Monthly ad budget
           </label>
           <select
             id="budget"
             name="budget"
-            className="field-input cursor-pointer"
+            className="field-input cursor-pointer bg-ink-900"
             defaultValue=""
           >
             <option value="" disabled>
@@ -136,21 +138,21 @@ export function ApplyForm() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <label className="text-sm font-medium text-mist-300" htmlFor="message">
-          Tell us about your next intake
+          <label className="text-sm font-medium text-mist-400" htmlFor="message">
+          Next intake{" "}
+          <span className="font-normal text-mist-500">(optional)</span>
         </label>
         <textarea
           id="message"
           name="message"
-          required
-          rows={5}
-          placeholder="Intake dates, batch size, where admissions are leaking..."
-          className="field-input min-h-28 resize-none"
+          rows={3}
+          placeholder="Intake month, batch size, where admissions leak..."
+          className="field-input min-h-20 resize-none"
         />
       </div>
 
       {status === "error" && (
-        <div className="flex items-center gap-2 rounded-xl border border-red-500/30 bg-red-50 px-4 py-3 text-sm text-red-700">
+        <div className="flex items-center gap-2 rounded-xl border border-signal/30 bg-signal/10 px-4 py-3 text-sm text-signal">
           <AlertCircle size={16} />
           {errorMessage}
         </div>
@@ -159,7 +161,9 @@ export function ApplyForm() {
       <Button
         type="submit"
         variant="primary"
-        className="w-full justify-center sm:w-fit"
+        size="xl"
+        pulse={status !== "submitting"}
+        className="w-full justify-center"
       >
         {status === "submitting" ? (
           <>
@@ -170,6 +174,10 @@ export function ApplyForm() {
           "Book My Free Strategy Call"
         )}
       </Button>
+      <p className="text-center text-xs text-mist-500">
+        {offerWindow.remaining} of {offerWindow.capacity} spots left this intake.
+        No obligation.
+      </p>
     </form>
   );
 }
@@ -189,7 +197,7 @@ function Field({
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <label className="text-sm font-medium text-mist-300" htmlFor={name}>
+      <label className="text-sm font-medium text-mist-400" htmlFor={name}>
         {label}
       </label>
       <input

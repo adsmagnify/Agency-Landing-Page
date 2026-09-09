@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Lock } from "lucide-react";
 import { offerWindow } from "@/lib/constants";
 
 function pad(n: number) {
@@ -24,11 +23,15 @@ export function useOfferCountdown() {
     m: 0,
     s: 0,
     label: "00d 00:00:00",
+    ready: false,
   });
 
   useEffect(() => {
     function tick() {
-      setRemaining(formatRemaining(offerWindow.closeAt - Date.now()));
+      setRemaining({
+        ...formatRemaining(offerWindow.closeAt - Date.now()),
+        ready: true,
+      });
     }
     tick();
     const id = setInterval(tick, 1000);
@@ -43,54 +46,35 @@ export function OfferBar() {
 
   return (
     <div
-      className="overflow-hidden bg-brand-600 py-2 [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]"
+      className="border-b border-cyan-500/30 bg-gradient-to-r from-brand-700 to-brand-600"
       aria-live="polite"
     >
-      <div className="flex w-max animate-marquee items-center">
-        {[0, 1].map((copy) => (
-          <div
-            key={copy}
-            className="flex items-center"
-            aria-hidden={copy === 1}
-          >
-            {[0, 1, 2].map((item) => (
-              <span
-                key={`${copy}-${item}`}
-                className="mx-5 flex shrink-0 items-center gap-3 text-xs font-medium tracking-wide whitespace-nowrap text-white sm:mx-8 sm:text-sm"
-              >
-                <span className="inline-flex items-center gap-1.5 text-cyan-400">
-                  <Lock size={12} aria-hidden />
-                  Onboarding closes in{" "}
-                  <span className="font-semibold tabular-nums text-cyan-300">
-                    {remaining.label}
-                  </span>
-                </span>
-                <span className="text-white/35" aria-hidden>
-                  |
-                </span>
-                <span>
-                  Only {offerWindow.capacity} institutes this intake ·{" "}
-                  <span className="font-semibold text-cyan-400">
-                    {offerWindow.remaining} spots left
-                  </span>{" "}
-                  ({offerWindow.filled} filled)
-                </span>
-                <span className="text-white/35" aria-hidden>
-                  |
-                </span>
-                <a
-                  href="#apply"
-                  className="font-semibold text-cyan-400 transition-colors hover:text-white"
-                >
-                  Apply Now →
-                </a>
-                <span className="mx-3 text-cyan-400 sm:mx-5" aria-hidden>
-                  &bull;
-                </span>
-              </span>
-            ))}
-          </div>
-        ))}
+      <div className="mx-auto flex max-w-[1140px] flex-wrap items-center justify-center gap-3 px-6 py-2 text-[0.78rem] text-white sm:h-11 sm:gap-[22px] sm:py-0 sm:text-[0.86rem]">
+        <span className="font-semibold text-cyan-500">
+          🔒 Onboarding closes{" "}
+          <b className="font-semibold tabular-nums">
+            {remaining.ready ? `in ${remaining.label}` : "30 Sep"}
+          </b>
+        </span>
+        <span className="hidden text-white/25 sm:inline" aria-hidden>
+          |
+        </span>
+        <span>
+          Only {offerWindow.capacity} institutes this intake ·{" "}
+          <span className="font-bold text-cyan-500">
+            {offerWindow.remaining} spots left
+          </span>{" "}
+          ({offerWindow.filled} filled)
+        </span>
+        <span className="hidden text-white/25 sm:inline" aria-hidden>
+          |
+        </span>
+        <a
+          href="#apply"
+          className="font-bold text-cyan-500 transition-colors hover:text-white"
+        >
+          Apply Now →
+        </a>
       </div>
     </div>
   );

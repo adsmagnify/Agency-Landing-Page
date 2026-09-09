@@ -12,10 +12,10 @@ export const educationClients = [
 ] as const;
 
 export const stats = [
-  { value: "₹50 Cr+", label: "Ad spend managed" },
+  { value: "₹50Cr+", label: "Ad spend managed" },
   { value: "300+", label: "Brands served" },
-  { value: "10", label: "Education institutes" },
-  { value: "3.4x", label: "Avg return on ad spend" },
+  { value: "15+", label: "Education institutes" },
+  { value: "12–17x", label: "Avg return on ad spend*" },
 ] as const;
 
 export const problems = [
@@ -122,35 +122,76 @@ export const systemSteps = [
 
 export const results = [
   {
-    value: "5.4x",
+    value: "14.2x",
     cap: "Return on ad spend",
-    sub: "Mirage Spa & Education",
+    ctx: "₹4.2L spend · 60 days · Meta + Google",
+    sub: "Study-abroad institute, Mumbai",
   },
   {
-    value: "320+",
-    cap: "Course enrollments",
-    sub: "Professional academy students",
+    value: "96%",
+    cap: "Batch filled",
+    ctx: "Fall intake · 45 days",
+    sub: "Competitive-exam institute",
   },
   {
-    value: "42%",
+    value: "112",
+    cap: "Paid admissions in 60 days",
+    ctx: "₹3.8L spend · Meta + Google",
+    sub: "Coaching institute",
+  },
+  {
+    value: "38%",
     cap: "Lower cost per enrollment",
-    sub: "Vs. prior benchmark",
+    ctx: "vs previous agency · 90 days",
+    sub: "Language / skill institute",
   },
   {
-    value: "28%",
-    cap: "Inquiry to enrollment rate",
-    sub: "WhatsApp counseling pipeline",
+    value: "3 min",
+    cap: "Lead response time",
+    ctx: "With instant-response automation",
+    sub: "Down from 2–3 days",
   },
   {
-    value: "3.4x",
-    cap: "Average blended ROAS",
-    sub: "Across Adsmagnify accounts",
+    value: "1,400+",
+    cap: "Students enrolled via our systems",
+    ctx: "Last 12 months",
+    sub: "Across 15+ institutes",
   },
-  {
-    value: "10",
-    cap: "Education institutes served",
-    sub: "Study-abroad, coaching, and academies",
-  },
+] as const;
+
+export const proofPlatforms = [
+  "Meta Ads",
+  "Google Ads",
+  "GA4",
+  "Nirikshan",
+  "Shopify",
+] as const;
+
+export const founder = {
+  name: "Vinay",
+  photo: "/team/vinay.jpg",
+  eyebrow: "Meet the founder",
+  title: "Hey, I'm Vinay.",
+  paragraphs: [
+    "I run Adsmagnify, a performance marketing agency in Mumbai. Here's what makes us different from every agency you've dealt with: we're an agency first, and an academy second.",
+    "We don't just run ads for education institutes. We run our own academy on the exact same system. So we know what it actually takes to fill a batch, because we do it every intake, for ourselves and for 15+ institutes across coaching and study-abroad.",
+  ],
+  points: [
+    "₹50Cr+ in ad spend managed across 300+ brands",
+    "Built on our own frameworks: One Campaign Method & Nirikshan reporting",
+    "Education-only focus: study-abroad, coaching & exam-prep institutes",
+  ],
+} as const;
+
+export const offerStack = [
+  "Deadline-timed Meta + Google campaigns on our One Campaign Method",
+  "Enrollment-focused ad creative that filters for serious students",
+  "Landing page & funnel built to convert parents and students",
+  "Instant lead-response so no student ever goes cold",
+  "Counselor-accepted lead filtering (leads count only when real)",
+  "Follow-up + off-season nurture automation",
+  "Nirikshan dashboard: track admissions, not just form fills",
+  "Weekly performance reviews with our team",
 ] as const;
 
 export const programs = [
@@ -159,7 +200,7 @@ export const programs = [
     for: "For institutes with an in-house team",
     desc: "We run your Meta + Google ads on our enrollment-first framework. You handle follow-up and closing.",
     featured: false,
-    cta: "Learn More",
+    cta: "Book a Call",
     href: "#apply",
     items: [
       "Deadline-timed campaigns",
@@ -172,7 +213,7 @@ export const programs = [
     for: "Done-for-you enrollment system",
     desc: "The full funnel: ads, instant response, follow-up automation, and dashboard. Backed by the Full-Batch Guarantee.",
     featured: true,
-    cta: "Apply Now",
+    cta: "Claim My Spot",
     href: "#apply",
     items: [
       "Everything in Ad Management",
@@ -186,7 +227,7 @@ export const programs = [
     for: "For multi-branch institutes scaling fast",
     desc: "End-to-end managed growth across every intake and location, with dedicated strategy and priority support.",
     featured: false,
-    cta: "Learn More",
+    cta: "Book a Call",
     href: "#apply",
     items: [
       "Everything in the Funnel",
@@ -215,7 +256,7 @@ export const faqs = [
   {
     question: "What if it doesn't work?",
     answer:
-      "The Full-Batch Guarantee means you don't keep paying until we deliver the enrollments we commit to on the strategy call. The risk is ours.",
+      "The Full-Batch Guarantee means you don't keep paying until we deliver 80–120+ enrollments. The risk is ours.",
   },
   {
     question: "Do you work with my type of institute?",

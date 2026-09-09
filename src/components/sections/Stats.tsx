@@ -1,45 +1,24 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
-import { RollingDigits } from "@/components/motion/RollingDigits";
 import { stats } from "@/content/funnel";
-
-const ease = [0.22, 1, 0.36, 1] as const;
 
 export function Stats() {
   return (
-    <section className="relative overflow-hidden border-y border-brand-600 bg-brand-500 section-band">
-      <div className="pointer-events-none absolute inset-0 bg-grid opacity-10" />
-      <Container>
-        <motion.div
-          className="grid grid-cols-2 gap-y-10 sm:gap-8 lg:grid-cols-4 lg:divide-x lg:divide-white/15"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-40px" }}
-          variants={{
-            hidden: {},
-            show: { transition: { staggerChildren: 0.1 } },
-          }}
-        >
-          {stats.map((stat) => (
-            <motion.div
-              key={stat.label}
-              variants={{
-                hidden: { opacity: 0, y: 16 },
-                show: { opacity: 1, y: 0, transition: { duration: 0.55, ease } },
-              }}
-              className="flex flex-col items-center gap-3 px-2 text-center lg:px-6"
-            >
-              <span className="font-display text-3xl font-semibold leading-none text-cyan-500 sm:text-4xl lg:text-5xl">
-                <RollingDigits value={stat.value} />
-              </span>
-              <span className="max-w-[16ch] text-xs leading-snug text-cyan-300 sm:text-sm">
-                {stat.label}
-              </span>
-            </motion.div>
-          ))}
-        </motion.div>
+    <section className="relative overflow-hidden border-y border-cyan-500/20 bg-[linear-gradient(90deg,#07101f,#0c1a36_50%,#07101f)]">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-500/70 to-transparent" />
+      <Container className="grid grid-cols-2 p-0 lg:grid-cols-4">
+        {stats.map((stat) => (
+          <div
+            key={stat.label}
+            className="relative border-white/9 px-5 py-8 text-center max-lg:odd:border-r lg:border-r lg:last:border-r-0"
+          >
+            <p className="font-display text-[clamp(1.7rem,3.4vw,2.4rem)] leading-none font-extrabold text-cyan-500">
+              {stat.value}
+            </p>
+            <p className="mt-2.5 text-[0.86rem] text-mist-400">{stat.label}</p>
+          </div>
+        ))}
       </Container>
     </section>
   );

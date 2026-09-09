@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import { Badge } from "./Badge";
 import { Reveal } from "@/components/motion/Reveal";
 
 export function SectionHeading({
@@ -20,19 +19,23 @@ export function SectionHeading({
   return (
     <Reveal
       className={cn(
-        "flex max-w-4xl flex-col",
+        "flex max-w-[820px] flex-col",
         align === "center" && "mx-auto items-center text-center",
         className
       )}
     >
-      {eyebrow && <Badge>{eyebrow}</Badge>}
-      <h2 id={headingId} className="headline-2 mt-3.5 sm:mt-4">
+      {eyebrow && (
+        <p className={cn("eyebrow", align === "center" && "justify-center")}>
+          {eyebrow}
+        </p>
+      )}
+      <h2 id={headingId} className="headline-2">
         {title}
       </h2>
       {description && (
         <p
           className={cn(
-            "mt-4 text-base leading-relaxed text-mist-400 sm:mt-5 sm:text-lg",
+            "mt-4 text-[1.1rem] leading-relaxed text-mist-500",
             align === "center" && "max-w-2xl"
           )}
         >

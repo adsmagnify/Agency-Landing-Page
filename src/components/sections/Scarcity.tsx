@@ -1,68 +1,85 @@
 "use client";
 
-import { Lock } from "lucide-react";
+import { Check } from "lucide-react";
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { offerWindow } from "@/lib/constants";
 import { useOfferCountdown } from "@/components/layout/OfferBar";
+import { cn } from "@/lib/utils";
 
 export function Scarcity() {
   const remaining = useOfferCountdown();
   const filledPct = (offerWindow.filled / offerWindow.capacity) * 100;
   const units = [
-    { label: "Days", value: remaining.d },
-    { label: "Hours", value: remaining.h },
-    { label: "Minutes", value: remaining.m },
-    { label: "Seconds", value: remaining.s },
+    { label: "Days", value: remaining.ready ? String(remaining.d).padStart(2, "0") : "–" },
+    { label: "Hours", value: remaining.ready ? String(remaining.h).padStart(2, "0") : "–" },
+    { label: "Minutes", value: remaining.ready ? String(remaining.m).padStart(2, "0") : "–" },
+    { label: "Seconds", value: remaining.ready ? String(remaining.s).padStart(2, "0") : "–" },
   ];
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-ink-950 via-ink-900 to-ink-950 py-14 sm:py-16 lg:py-20">
-      <div className="pointer-events-none absolute inset-0 bg-grid opacity-20 [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,black,transparent)]" />
-      <div className="pointer-events-none absolute -top-20 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-brand-500/25 blur-3xl" />
-      <div className="pointer-events-none absolute right-0 bottom-0 h-64 w-64 rounded-full bg-cyan-500/15 blur-3xl" />
-
-      <Container className="relative flex flex-col items-center text-center">
-        <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-[0.65rem] font-semibold tracking-[0.16em] text-cyan-300 uppercase">
-          <Lock size={13} aria-hidden />
-          Limited onboarding
-        </span>
-        <h2 className="headline-2 mt-5 max-w-xl text-white sm:mt-6">
-          Onboarding closes soon
+    <section className="navy-band relative overflow-hidden py-16 text-center sm:py-20 lg:py-[5.75rem]">
+      <div className="pointer-events-none absolute inset-0 bg-noise opacity-40" />
+      <div className="pointer-events-none absolute top-[-6rem] left-1/2 h-64 w-[28rem] -translate-x-1/2 rounded-full bg-cyan-500/15 blur-[90px]" />
+      <Container className="relative flex flex-col items-center">
+        <h2 className="headline-2 text-white">
+          <span className="text-cyan-500">🔒</span> Onboarding closes soon
         </h2>
 
-        <div className="mt-10 grid w-full max-w-xl grid-cols-4 gap-2 sm:mt-12 sm:gap-4">
+        <div className="mt-7 flex flex-wrap justify-center gap-3.5">
           {units.map((unit) => (
             <div
               key={unit.label}
-              className="rounded-2xl border border-white/10 bg-white/5 px-1.5 py-4 sm:px-4 sm:py-6"
+              className="min-w-[86px] rounded-xl border border-cyan-500/25 bg-black/28 px-2.5 py-4"
             >
               <p
                 key={`${unit.label}-${unit.value}`}
-                className="animate-tick font-display text-2xl font-semibold tabular-nums text-cyan-400 sm:text-4xl"
+                className="animate-tick font-display text-[2.2rem] leading-none font-extrabold tabular-nums text-cyan-500"
               >
-                {String(unit.value).padStart(2, "0")}
+                {unit.value}
               </p>
-              <p className="mt-2 text-[0.6rem] tracking-widest text-white/50 uppercase sm:text-[0.65rem]">
+              <p className="mt-2 text-[0.72rem] tracking-[0.06em] text-white/60 uppercase">
                 {unit.label}
               </p>
             </div>
           ))}
         </div>
 
-        <div className="mt-10 w-full max-w-md sm:mt-12">
-          <div className="mb-3 flex items-center justify-between text-sm text-white/80">
+        <div
+          className="mt-8 grid grid-cols-4 gap-2.5 sm:gap-3"
+          aria-label={`${offerWindow.filled} of ${offerWindow.capacity} seats filled`}
+        >
+          {Array.from({ length: offerWindow.capacity }, (_, index) => {
+            const filled = index < offerWindow.filled;
+            return (
+              <span
+                key={index}
+                className={cn(
+                  "flex h-11 w-11 items-center justify-center rounded-xl border text-sm font-bold sm:h-12 sm:w-12",
+                  filled
+                    ? "border-cyan-500/80 bg-cyan-500 text-[#111] shadow-[0_0_16px_rgba(255,198,25,0.35)]"
+                    : "border-dashed border-cyan-500/45 bg-black/20 text-cyan-400 animate-seat-pulse"
+                )}
+              >
+                {filled ? <Check size={16} strokeWidth={3} aria-hidden /> : index + 1}
+              </span>
+            );
+          })}
+        </div>
+
+        <div className="mt-6 w-full max-w-[520px]">
+          <div className="mb-2.5 flex items-center justify-between text-[0.92rem] text-white">
             <span>
               {offerWindow.filled} of {offerWindow.capacity} institutes onboarded
             </span>
-            <span className="font-semibold text-cyan-400">
+            <span className="font-bold text-cyan-500">
               {offerWindow.remaining} spots left
             </span>
           </div>
-          <div className="h-3 overflow-hidden rounded-full bg-white/15">
+          <div className="h-3 overflow-hidden rounded-full bg-white/14">
             <motion.div
-              className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-cyan-300"
+              className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-cyan-400"
               initial={{ width: 0 }}
               whileInView={{ width: `${filledPct}%` }}
               viewport={{ once: true }}
@@ -71,13 +88,13 @@ export function Scarcity() {
           </div>
         </div>
 
-        <p className="mt-7 max-w-xl text-sm leading-relaxed text-white/60">
+        <p className="mt-[22px] max-w-xl text-[0.9rem] text-white/70">
           We take only {offerWindow.capacity} institutes per intake so we can go
           deep on each one and protect delivery.
         </p>
 
-        <div className="mt-9">
-          <Button href="#apply" variant="primary" showArrow>
+        <div className="mt-[26px]">
+          <Button href="#apply" variant="primary" size="lg" pulse>
             Secure My Spot
           </Button>
         </div>

@@ -24,9 +24,9 @@ export async function POST(request: Request) {
 
   const { name, email, company, phone, instituteType, budget, message } = payload;
 
-  if (!name?.trim() || !email?.trim() || !message?.trim()) {
+  if (!name?.trim() || !email?.trim() || !company?.trim() || !phone?.trim()) {
     return NextResponse.json(
-      { error: "Name, email, and message are required." },
+      { error: "Name, email, institute, and phone are required." },
       { status: 400 }
     );
   }
@@ -105,7 +105,7 @@ export async function POST(request: Request) {
               </table>
               <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
                 <h4 style="margin: 0 0 8px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b;">Intake / Goals:</h4>
-                <div style="background-color: #f8fafc; border-left: 4px solid #004aad; padding: 16px; border-radius: 6px; font-size: 14px; line-height: 1.6; color: #334155; white-space: pre-wrap;">${message}</div>
+                <div style="background-color: #f8fafc; border-left: 4px solid #004aad; padding: 16px; border-radius: 6px; font-size: 14px; line-height: 1.6; color: #334155; white-space: pre-wrap;">${message?.trim() || "No intake details provided."}</div>
               </div>
             </div>
           </div>

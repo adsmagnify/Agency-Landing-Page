@@ -1,29 +1,32 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Sora } from "next/font/google";
+import { Poppins, Figtree } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
+import { StickyCta } from "@/components/layout/StickyCta";
 import { siteConfig } from "@/lib/constants";
 import { buildMetadata, organizationJsonLd } from "@/lib/seo";
 
-const inter = Inter({
-  variable: "--font-inter",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
   display: "swap",
+  weight: ["500", "600", "700", "800"],
 });
 
-const sora = Sora({
-  variable: "--font-sora",
+const figtree = Figtree({
+  variable: "--font-figtree",
   subsets: ["latin"],
   display: "swap",
-  weight: ["500", "600", "700"],
+  weight: ["400", "500", "600"],
 });
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
+  themeColor: "#070911",
 };
 
 export const metadata: Metadata = {
@@ -54,9 +57,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${sora.variable} h-full antialiased`}
+      className={`${poppins.variable} ${figtree.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full min-w-0 flex-col overflow-x-clip">
+      <body className="flex min-h-full min-w-0 flex-col overflow-x-clip pb-[4.75rem] lg:pb-0">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -66,6 +69,7 @@ export default function RootLayout({
         <Header />
         <main className="min-w-0 flex-1">{children}</main>
         <Footer />
+        <StickyCta />
         <WhatsAppFloat />
       </body>
     </html>

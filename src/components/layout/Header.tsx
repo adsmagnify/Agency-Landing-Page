@@ -48,33 +48,33 @@ export function Header() {
   }, [activeHash]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
+    <header className="sticky inset-x-0 top-0 z-50">
       <OfferBar />
       <div
         className={cn(
-          "transition-all duration-300",
+          "border-b border-white/9 transition-all duration-300",
           scrolled || open
-            ? "border-b border-ink-950/8 bg-white/90 shadow-sm backdrop-blur-xl"
-            : "border-b border-transparent bg-transparent"
+            ? "bg-[#070911]/90 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.7)] backdrop-blur-[10px]"
+            : "bg-[#070911]/90 backdrop-blur-[10px]"
         )}
       >
-        <Container className="flex h-14 items-center justify-between gap-3 py-3 sm:h-16 sm:py-4">
+        <Container className="flex h-[68px] items-center justify-between gap-5">
           <Link
             href="#top"
             aria-label={siteConfig.name}
             className="flex shrink-0 items-center"
           >
             <Image
-              src="/logo-nav-mark.png"
+              src="/logo-footer.png"
               alt={siteConfig.name}
               width={186}
               height={46}
               priority
-              className="h-7 w-auto sm:h-9"
+              className="h-8 w-auto sm:h-9"
             />
           </Link>
 
-          <nav className="hidden items-center gap-8 lg:flex">
+          <nav className="hidden items-center gap-[26px] text-[0.93rem] lg:flex">
             {navLinks.map((link) => {
               const active = activeHash === link.href;
               return (
@@ -82,16 +82,15 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "relative py-2 text-sm font-medium transition-colors hover:text-ink-950",
-                    active ? "text-ink-950" : "text-mist-400"
+                    "relative py-2 transition-colors hover:text-cyan-500",
+                    active ? "text-cyan-500" : "text-mist-300"
                   )}
                 >
                   {link.label}
                   {active && (
-                    <motion.span
-                      layoutId="nav-underline"
-                      className="absolute inset-x-0 -bottom-0.5 h-0.5 rounded-full bg-brand-500"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    <span
+                      aria-hidden
+                      className="absolute inset-x-0 -bottom-0.5 h-px bg-cyan-500"
                     />
                   )}
                 </a>
@@ -100,7 +99,7 @@ export function Header() {
           </nav>
 
           <div className="hidden lg:block">
-            <Button href="#apply" variant="primary" showArrow>
+            <Button href="#apply" variant="primary" size="nav">
               Apply Now
             </Button>
           </div>
@@ -108,7 +107,7 @@ export function Header() {
           <button
             type="button"
             aria-label="Toggle menu"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-ink-950/10 text-ink-950 lg:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/12 text-white lg:hidden"
             onClick={() => setOpen((value) => !value)}
           >
             {open ? <X size={18} /> : <Menu size={18} />}
@@ -122,7 +121,7 @@ export function Header() {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.25, ease: "easeInOut" }}
-              className="overflow-hidden border-b border-ink-950/8 bg-white/95 lg:hidden"
+              className="overflow-hidden border-b border-white/9 bg-ink-950 lg:hidden"
             >
               <Container className="flex max-h-[min(70dvh,32rem)] flex-col gap-1 overflow-y-auto py-4">
                 {navLinks.map((link) => {
@@ -133,9 +132,9 @@ export function Header() {
                       href={link.href}
                       onClick={() => setOpen(false)}
                       className={cn(
-                        "rounded-lg border-l-2 px-3 py-3 text-sm font-medium transition-colors hover:bg-ink-950/5 hover:text-ink-950",
+                        "rounded-lg border-l-2 px-3 py-3 text-sm font-medium transition-colors hover:bg-white/5 hover:text-cyan-500",
                         active
-                          ? "border-brand-500 bg-ink-950/5 text-ink-950"
+                          ? "border-cyan-500 bg-white/5 text-cyan-500"
                           : "border-transparent text-mist-300"
                       )}
                     >
@@ -147,7 +146,7 @@ export function Header() {
                   <Button
                     href="#apply"
                     variant="primary"
-                    showArrow
+                    size="lg"
                     className="w-full"
                     onClick={() => setOpen(false)}
                   >

@@ -22,15 +22,15 @@ const screens = chunkTestimonials(
 
 function StarRating({ rating }: { rating: number }) {
   return (
-    <div className="flex items-center gap-0.5" aria-label={`${rating} out of 5 stars`}>
+    <div className="mb-3.5 tracking-[2px] text-cyan-500" aria-label={`${rating} out of 5 stars`}>
       {Array.from({ length: 5 }, (_, i) => (
         <Star
           key={i}
           size={16}
           className={
             i < rating
-              ? "fill-cyan-500 text-cyan-500"
-              : "fill-transparent text-mist-500/40"
+              ? "inline fill-cyan-500 text-cyan-500"
+              : "inline fill-transparent text-mist-500/40"
           }
           aria-hidden
         />
@@ -55,13 +55,14 @@ export function Testimonials() {
   const activeScreen = screens[screenIndex] ?? screens[0];
 
   return (
-    <section className="relative overflow-hidden border-y border-ink-950/8 bg-brand-50/40 section">
-      <Container className="section-gap">
+    <section className="relative overflow-hidden section">
+      <div className="pointer-events-none absolute inset-0 bg-noise opacity-40" />
+      <div className="pointer-events-none absolute top-0 left-1/2 h-64 w-[32rem] -translate-x-1/2 rounded-full bg-brand-500/15 blur-[100px]" />
+      <Container className="relative section-gap">
         <SectionHeading
           align="center"
           eyebrow="Success Stories"
-          title="What clients say after Adsmagnify"
-          description="Real feedback from brands we've helped grow."
+          title="What institute owners say after Adsmagnify"
         />
 
         <div
@@ -73,17 +74,11 @@ export function Testimonials() {
             <AnimatePresence mode="wait" initial={false}>
               <motion.div
                 key={screenIndex}
-                initial={
-                  reduceMotion ? false : { opacity: 0, y: 12, filter: "blur(4px)" }
-                }
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={
-                  reduceMotion
-                    ? undefined
-                    : { opacity: 0, y: -10, filter: "blur(4px)" }
-                }
+                initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={reduceMotion ? undefined : { opacity: 0, y: -10 }}
                 transition={{ duration: 0.5, ease: EASE }}
-                className="grid grid-cols-1 gap-6 md:grid-cols-3"
+                className="grid grid-cols-1 gap-[22px] md:grid-cols-3"
               >
                 {activeScreen.map((review, index) => (
                   <motion.article
@@ -91,30 +86,35 @@ export function Testimonials() {
                     initial={reduceMotion ? false : { opacity: 0, y: 14 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.45, delay: index * 0.08, ease: EASE }}
-                    className={cn(
-                      "flex h-full min-h-[17rem] flex-col gap-4 rounded-2xl border border-ink-950/8 bg-white p-6 shadow-sm sm:p-7",
-                      !reduceMotion && "animate-review-border"
-                    )}
+                    className="relative flex h-full min-h-[17rem] flex-col overflow-hidden rounded-2xl border border-white/9 bg-ink-800 p-7"
                   >
-                    <div className="flex items-center gap-3">
+                    <span
+                      aria-hidden
+                      className="absolute top-3 right-5 font-display text-7xl leading-none text-cyan-500/15"
+                    >
+                      ”
+                    </span>
+                    <StarRating rating={review.rating} />
+                    <p className="relative min-h-24 text-[0.98rem] text-mist-300">
+                      &ldquo;{review.description}&rdquo;
+                    </p>
+                    <div className="relative mt-[18px] flex items-center gap-3 border-t border-white/9 pt-4">
                       <span
-                        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-semibold text-white"
+                        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-display text-xs font-bold text-white"
                         style={{ backgroundColor: review.avatarColor }}
                         aria-hidden
                       >
                         {review.initials}
                       </span>
-                      <p className="text-sm font-semibold text-ink-950">
-                        {review.name}
-                      </p>
+                      <div className="min-w-0">
+                        <p className="text-[0.94rem] font-bold text-white">
+                          {review.name}
+                        </p>
+                        <span className="mt-1 inline-flex rounded-full border border-cyan-500/20 bg-brand-600/40 px-2.5 py-0.5 text-[0.7rem] text-cyan-400">
+                          {review.tag}
+                        </span>
+                      </div>
                     </div>
-                    <StarRating rating={review.rating} />
-                    <p className="text-sm leading-relaxed text-mist-300 sm:text-[0.9375rem]">
-                      &ldquo;{review.description}&rdquo;
-                    </p>
-                    <span className="mt-auto inline-flex w-fit rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-[0.65rem] font-medium tracking-wide text-brand-700 uppercase">
-                      {review.tag}
-                    </span>
                   </motion.article>
                 ))}
               </motion.div>
@@ -139,7 +139,7 @@ export function Testimonials() {
                     "h-2 rounded-full transition-all duration-300",
                     i === screenIndex
                       ? "w-7 bg-cyan-500"
-                      : "w-2 bg-ink-950/15 hover:bg-ink-950/30"
+                      : "w-2 bg-white/15 hover:bg-white/30"
                   )}
                 />
               ))}

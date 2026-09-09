@@ -16,14 +16,15 @@ function DigitReel({
   delay: number;
   active: boolean;
 }) {
-  const targetIndex = CYCLES * 10 + digit;
+  const restIndex = digit;
+  const spinIndex = CYCLES * 10 + digit;
 
   return (
     <span className="relative inline-block h-[1em] w-[0.7em] overflow-hidden align-[-0.08em]">
       <motion.span
         className="flex flex-col items-center will-change-transform"
-        initial={{ y: "0em" }}
-        animate={{ y: active ? `${-targetIndex}em` : "0em" }}
+        initial={{ y: `${-restIndex}em` }}
+        animate={{ y: `${-(active ? spinIndex : restIndex)}em` }}
         transition={{
           duration: active ? 1.55 : 0,
           delay: active ? delay : 0,
@@ -45,7 +46,7 @@ function DigitReel({
 
 export function RollingDigits({ value }: { value: string }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.7 });
+  const isInView = useInView(ref, { once: true, amount: 0.35 });
   const prefersReducedMotion = useReducedMotion();
   const reduceMotion = prefersReducedMotion === true;
   const shouldSpin = isInView && !reduceMotion;
