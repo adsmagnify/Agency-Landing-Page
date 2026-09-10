@@ -27,7 +27,8 @@ export function Apply() {
 
         <Reveal
           delay={0.08}
-          className="gold-frame mx-auto max-w-2xl rounded-[22px] border-2 border-cyan-500 bg-ink-800 p-5 sm:p-8 lg:p-10"
+          id="apply-form"
+          className="gold-frame mx-auto max-w-2xl scroll-mt-32 rounded-[22px] border-2 border-cyan-500 bg-ink-800 p-5 sm:p-8 lg:p-10 sm:scroll-mt-36"
         >
           <div className="mb-6">
             <h3 className="font-display text-xl font-extrabold text-white sm:text-2xl">

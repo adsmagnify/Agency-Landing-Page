@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { hashFromHref, isInPageHash, scrollToHash } from "@/lib/scroll";
 
 type ButtonVariant = "primary" | "secondary" | "ghost";
 type ButtonSize = "md" | "lg" | "xl" | "nav";
@@ -47,6 +50,10 @@ type ButtonProps = LinkButtonProps | ClickButtonProps;
 const baseClasses =
   "group inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg font-display font-bold transition-all duration-150 ease-out";
 
+function isExternalHref(href: string) {
+  return /^(https?:|mailto:|tel:)/.test(href);
+}
+
 export function Button({
   variant = "primary",
   size = "md",
@@ -78,12 +85,32 @@ export function Button({
   );
 
   if (href) {
+    const userOnClick = (rest as LinkButtonProps).onClick;
+
+    if (isInPageHash(href) || isExternalHref(href)) {
+      return (
+        <a
+          href={href}
+          className={classes}
+          {...(isExternalHref(href)
+            ? { target: "_blank", rel: "noreferrer noopener" }
+            : {})}
+          onClick={(event) => {
+            userOnClick?.(event);
+            if (event.defaultPrevented) return;
+            const hash = hashFromHref(href);
+            if (!hash) return;
+            event.preventDefault();
+            scrollToHash(hash);
+          }}
+        >
+          {content}
+        </a>
+      );
+    }
+
     return (
-      <Link
-        href={href}
-        className={classes}
-        onClick={(rest as LinkButtonProps).onClick}
-      >
+      <Link href={href} className={classes} onClick={userOnClick}>
         {content}
       </Link>
     );

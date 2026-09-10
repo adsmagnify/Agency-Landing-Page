@@ -5,6 +5,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
 import { StickyCta } from "@/components/layout/StickyCta";
+import { HashScroll } from "@/components/layout/HashScroll";
 import { siteConfig } from "@/lib/constants";
 import { buildMetadata, organizationJsonLd } from "@/lib/seo";
 
@@ -66,6 +67,7 @@ export default function RootLayout({
             __html: JSON.stringify(organizationJsonLd()),
           }}
         />
+        <HashScroll />
         <Header />
         <main className="min-w-0 flex-1">{children}</main>
         <Footer />

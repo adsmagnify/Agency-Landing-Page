@@ -22,11 +22,11 @@ const screens = chunkTestimonials(
 
 function StarRating({ rating }: { rating: number }) {
   return (
-    <div className="mb-3.5 tracking-[2px] text-cyan-500" aria-label={`${rating} out of 5 stars`}>
+    <div className="mb-2 tracking-[2px] text-cyan-500" aria-label={`${rating} out of 5 stars`}>
       {Array.from({ length: 5 }, (_, i) => (
         <Star
           key={i}
-          size={16}
+          size={14}
           className={
             i < rating
               ? "inline fill-cyan-500 text-cyan-500"
@@ -78,7 +78,7 @@ export function Testimonials() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={reduceMotion ? undefined : { opacity: 0, y: -10 }}
                 transition={{ duration: 0.5, ease: EASE }}
-                className="grid grid-cols-1 gap-[22px] md:grid-cols-3"
+                className="grid grid-cols-1 items-stretch gap-[22px] md:grid-cols-3"
               >
                 {activeScreen.map((review, index) => (
                   <motion.article
@@ -86,31 +86,31 @@ export function Testimonials() {
                     initial={reduceMotion ? false : { opacity: 0, y: 14 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.45, delay: index * 0.08, ease: EASE }}
-                    className="relative flex h-full min-h-[17rem] flex-col overflow-hidden rounded-2xl border border-white/9 bg-ink-800 p-7"
+                    className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/9 bg-ink-800 p-5 md:p-6"
                   >
                     <span
                       aria-hidden
-                      className="absolute top-3 right-5 font-display text-7xl leading-none text-cyan-500/15"
+                      className="absolute top-1.5 right-4 font-display text-5xl leading-none text-cyan-500/15"
                     >
                       ”
                     </span>
                     <StarRating rating={review.rating} />
-                    <p className="relative min-h-24 text-[0.98rem] text-mist-300">
+                    <p className="relative flex-1 text-[0.92rem] leading-relaxed text-mist-300">
                       &ldquo;{review.description}&rdquo;
                     </p>
-                    <div className="relative mt-[18px] flex items-center gap-3 border-t border-white/9 pt-4">
+                    <div className="relative mt-3 flex items-center gap-2.5 border-t border-white/9 pt-3">
                       <span
-                        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-display text-xs font-bold text-white"
+                        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full font-display text-[0.65rem] font-bold text-white"
                         style={{ backgroundColor: review.avatarColor }}
                         aria-hidden
                       >
                         {review.initials}
                       </span>
                       <div className="min-w-0">
-                        <p className="text-[0.94rem] font-bold text-white">
+                        <p className="truncate text-[0.88rem] font-bold text-white">
                           {review.name}
                         </p>
-                        <span className="mt-1 inline-flex rounded-full border border-cyan-500/20 bg-brand-600/40 px-2.5 py-0.5 text-[0.7rem] text-cyan-400">
+                        <span className="mt-0.5 inline-flex rounded-full border border-cyan-500/20 bg-brand-600/40 px-2 py-px text-[0.65rem] text-cyan-400">
                           {review.tag}
                         </span>
                       </div>

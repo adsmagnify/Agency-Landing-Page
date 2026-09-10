@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { MapPin, ExternalLink } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -24,7 +23,7 @@ export function Footer() {
     <footer className="relative border-t border-white/9 bg-ink-900">
       <Container className="grid grid-cols-1 gap-10 py-[60px] sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.3fr] lg:gap-10">
         <div className="flex flex-col gap-4">
-          <Link href="#top" aria-label={siteConfig.name} className="inline-flex items-center">
+          <a href="#top" aria-label={siteConfig.name} className="inline-flex items-center">
             <Image
               src="/logo-footer.png"
               alt={siteConfig.name}
@@ -32,7 +31,7 @@ export function Footer() {
               height={57}
               className="h-10 w-auto sm:h-11"
             />
-          </Link>
+          </a>
           <p className="max-w-[34ch] text-[0.9rem] text-mist-500">
             Performance marketing for education institutes. Agency first, academy
             second.

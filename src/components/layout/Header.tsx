@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { navLinks, siteConfig } from "@/lib/constants";
@@ -59,7 +58,7 @@ export function Header() {
         )}
       >
         <Container className="flex h-[68px] items-center justify-between gap-5">
-          <Link
+          <a
             href="#top"
             aria-label={siteConfig.name}
             className="flex shrink-0 items-center"
@@ -72,7 +71,7 @@ export function Header() {
               priority
               className="h-8 w-auto sm:h-9"
             />
-          </Link>
+          </a>
 
           <nav className="hidden items-center gap-[26px] text-[0.93rem] lg:flex">
             {navLinks.map((link) => {

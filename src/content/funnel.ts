@@ -327,7 +327,7 @@ export const instituteTestimonials = [
   },
 ] as const;
 
-export const REVIEWS_PER_SCREEN = 3;
+export const REVIEWS_PER_SCREEN = 6;
 export const REVIEW_SCREEN_MS = 4000;
 
 export function chunkTestimonials<T>(items: T[], size: number): T[][] {
