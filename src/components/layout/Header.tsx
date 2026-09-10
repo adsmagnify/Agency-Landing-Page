@@ -24,27 +24,42 @@ export function Header() {
 
   useEffect(() => {
     const ids = navLinks.map((link) => link.href.slice(1));
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible?.target.id) setActiveHash(`#${visible.target.id}`);
-      },
-      { rootMargin: "-30% 0px -55% 0px", threshold: [0.1, 0.25, 0.5] }
-    );
 
-    ids.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
+    function updateActive() {
+      const probe = 160;
+      const first = document.getElementById(ids[0]);
+      if (first && first.getBoundingClientRect().top > probe + 48) {
+        setActiveHash("");
+        return;
+      }
 
-    return () => observer.disconnect();
+      let current = ids[0];
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= probe) current = id;
+      }
+      setActiveHash(`#${current}`);
+    }
+
+    let ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        updateActive();
+        ticking = false;
+      });
+    }
+
+    updateActive();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
-
-  useEffect(() => {
-    setOpen(false);
-  }, [activeHash]);
 
   return (
     <header className="sticky inset-x-0 top-0 z-50">
@@ -80,6 +95,7 @@ export function Header() {
                 <a
                   key={link.href}
                   href={link.href}
+                  onClick={() => setActiveHash(link.href)}
                   className={cn(
                     "relative py-2 transition-colors hover:text-cyan-500",
                     active ? "text-cyan-500" : "text-mist-300"
@@ -129,7 +145,10 @@ export function Header() {
                     <a
                       key={link.href}
                       href={link.href}
-                      onClick={() => setOpen(false)}
+                      onClick={() => {
+                        setActiveHash(link.href);
+                        setOpen(false);
+                      }}
                       className={cn(
                         "rounded-lg border-l-2 px-3 py-3 text-sm font-medium transition-colors hover:bg-white/5 hover:text-cyan-500",
                         active
