@@ -23,7 +23,7 @@ export function Footer() {
     <footer className="relative border-t border-white/9 bg-ink-900">
       <Container className="grid grid-cols-1 gap-10 py-[60px] sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.3fr] lg:gap-10">
         <div className="flex flex-col gap-4">
-          <a href="#top" aria-label={siteConfig.name} className="inline-flex items-center">
+          <a href="/" aria-label={siteConfig.name} className="inline-flex items-center">
             <Image
               src="/logo-footer.png"
               alt={siteConfig.name}
@@ -62,11 +62,11 @@ export function Footer() {
 
         <FooterColumn
           title="Who it's for"
-          links={niches.map((niche) => ({ href: "#who", label: niche.label }))}
+          links={niches.map((niche) => ({ href: "/#who", label: niche.label }))}
         />
         <FooterColumn
           title="Company"
-          links={navLinks.map((link) => ({ href: link.href, label: link.label }))}
+          links={navLinks.map((link) => ({ href: `/${link.href}`, label: link.label }))}
         />
 
         <div className="flex flex-col gap-3">
@@ -86,7 +86,7 @@ export function Footer() {
             {siteConfig.contact.phone}
           </a>
           <div className="pt-2">
-            <Button href="#apply" variant="primary" size="nav">
+            <Button href="/#apply" variant="primary" size="nav">
               Book a Call
             </Button>
           </div>

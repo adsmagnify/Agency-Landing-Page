@@ -1,13 +1,17 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { scrollToHash } from "@/lib/scroll";
 
 function inPageHashFromAnchor(anchor: HTMLAnchorElement) {
   const raw = anchor.getAttribute("href");
   if (!raw) return null;
   if (raw.startsWith("#")) return raw;
-  if (raw.startsWith("/#")) return raw.slice(1);
+  if (raw.startsWith("/#")) {
+    if (window.location.pathname === "/") return raw.slice(1);
+    return null;
+  }
 
   try {
     const url = new URL(anchor.href, window.location.href);
@@ -20,6 +24,8 @@ function inPageHashFromAnchor(anchor: HTMLAnchorElement) {
 }
 
 export function HashScroll() {
+  const pathname = usePathname();
+
   useEffect(() => {
     function onClick(event: MouseEvent) {
       if (event.defaultPrevented) return;
@@ -47,7 +53,7 @@ export function HashScroll() {
     }
 
     return () => document.removeEventListener("click", onClick, true);
-  }, []);
+  }, [pathname]);
 
   return null;
 }

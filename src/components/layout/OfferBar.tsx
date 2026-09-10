@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { offerWindow } from "@/lib/constants";
 
 function pad(n: number) {
@@ -43,6 +44,7 @@ export function useOfferCountdown() {
 
 export function OfferBar() {
   const remaining = useOfferCountdown();
+  const applyHref = usePathname() === "/" ? "#apply" : "/#apply";
 
   return (
     <div
@@ -70,7 +72,7 @@ export function OfferBar() {
           |
         </span>
         <a
-          href="#apply"
+          href={applyHref}
           className="font-bold text-cyan-500 transition-colors hover:text-white"
         >
           Apply Now →

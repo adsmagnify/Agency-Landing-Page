@@ -5,6 +5,7 @@ import { Problem } from "@/components/sections/Problem";
 import { Solution } from "@/components/sections/Solution";
 import { WhoItsFor } from "@/components/sections/WhoItsFor";
 import { HowWeHelp } from "@/components/sections/HowWeHelp";
+import { CaseStudies } from "@/components/sections/CaseStudies";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Results } from "@/components/sections/Results";
 import { Founder } from "@/components/sections/Founder";
@@ -54,6 +55,7 @@ export default function Home() {
       <Solution />
       <WhoItsFor />
       <HowWeHelp />
+      <CaseStudies />
       <Testimonials />
       <Results />
       <Founder />

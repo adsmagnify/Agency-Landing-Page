@@ -49,26 +49,24 @@ export function Hero() {
             <Badge size="compact">Education Institutes</Badge>
           </div>
 
-          <h1 className="flex w-full flex-col items-center gap-5">
-            <span className="font-display text-[1.55rem] leading-[1.18] font-extrabold tracking-[-0.02em] text-white sm:text-[2.05rem] lg:text-[2.35rem]">
+          <h1 className="flex w-full flex-col items-center gap-4 sm:gap-5">
+            <span className="font-display text-[clamp(1.95rem,4.6vw,3.2rem)] leading-[1.12] font-extrabold tracking-[-0.02em] text-white">
               Fill Every Batch With
               <span className="mt-1 block text-cyan-500">Paid Enrollments</span>
             </span>
-            <span className="flex w-full max-w-2xl flex-col items-center gap-2.5">
-              <span className="font-display text-[0.7rem] font-semibold tracking-[0.18em] text-cyan-500 uppercase sm:text-xs">
-                without
-              </span>
-              <span className="grid w-full grid-cols-2 gap-2 sm:grid-cols-4">
-                {rejected.map((item, index) => (
-                  <span
-                    key={item}
-                    className="inline-flex min-h-12 items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-2 text-center font-display text-[0.72rem] leading-tight text-white/85 sm:text-[0.78rem]"
-                  >
-                    <span className="leading-tight">{item}</span>
-                    <Stamp delay={0.42 + index * 0.14} />
-                  </span>
-                ))}
-              </span>
+            <span className="font-display text-[0.7rem] font-semibold tracking-[0.18em] text-cyan-500 uppercase sm:text-xs">
+              without
+            </span>
+            <span className="grid w-full max-w-2xl grid-cols-2 gap-2 sm:grid-cols-4">
+              {rejected.map((item, index) => (
+                <span
+                  key={item}
+                  className="inline-flex min-h-12 items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-2 text-center font-display text-[0.72rem] leading-tight text-white/85 sm:text-[0.78rem]"
+                >
+                  <span className="leading-tight">{item}</span>
+                  <Stamp delay={0.42 + index * 0.14} />
+                </span>
+              ))}
             </span>
           </h1>
 

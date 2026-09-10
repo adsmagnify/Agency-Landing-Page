@@ -19,7 +19,12 @@ export function scrollToHash(hash: string) {
 }
 
 export function isInPageHash(href: string) {
-  return href.startsWith("#") || href.startsWith("/#");
+  if (href.startsWith("#")) return true;
+  if (href.startsWith("/#")) {
+    if (typeof window === "undefined") return false;
+    return window.location.pathname === "/";
+  }
+  return false;
 }
 
 export function hashFromHref(href: string) {

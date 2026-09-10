@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { navLinks, siteConfig } from "@/lib/constants";
@@ -11,6 +12,9 @@ import { cn } from "@/lib/utils";
 import { OfferBar } from "@/components/layout/OfferBar";
 
 export function Header() {
+  const pathname = usePathname();
+  const onHome = pathname === "/";
+  const sectionHref = (href: string) => (onHome ? href : `/${href}`);
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [activeHash, setActiveHash] = useState("");
@@ -23,6 +27,11 @@ export function Header() {
   }, []);
 
   useEffect(() => {
+    if (pathname !== "/") {
+      setActiveHash("");
+      return;
+    }
+
     const ids = navLinks.map((link) => link.href.slice(1));
 
     function updateActive() {
@@ -59,7 +68,7 @@ export function Header() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, []);
+  }, [pathname]);
 
   return (
     <header className="sticky inset-x-0 top-0 z-50">
@@ -74,7 +83,7 @@ export function Header() {
       >
         <Container className="flex h-[68px] items-center justify-between gap-5">
           <a
-            href="#top"
+            href={onHome ? "#top" : "/"}
             aria-label={siteConfig.name}
             className="flex shrink-0 items-center"
           >
@@ -94,7 +103,7 @@ export function Header() {
               return (
                 <a
                   key={link.href}
-                  href={link.href}
+                  href={sectionHref(link.href)}
                   onClick={() => setActiveHash(link.href)}
                   className={cn(
                     "relative py-2 transition-colors hover:text-cyan-500",
@@ -114,7 +123,7 @@ export function Header() {
           </nav>
 
           <div className="hidden lg:block">
-            <Button href="#apply" variant="primary" size="nav">
+            <Button href={sectionHref("#apply")} variant="primary" size="nav">
               Apply Now
             </Button>
           </div>
@@ -144,7 +153,7 @@ export function Header() {
                   return (
                     <a
                       key={link.href}
-                      href={link.href}
+                      href={sectionHref(link.href)}
                       onClick={() => {
                         setActiveHash(link.href);
                         setOpen(false);
@@ -162,7 +171,7 @@ export function Header() {
                 })}
                 <div className="mt-2">
                   <Button
-                    href="#apply"
+                    href={sectionHref("#apply")}
                     variant="primary"
                     size="lg"
                     className="w-full"

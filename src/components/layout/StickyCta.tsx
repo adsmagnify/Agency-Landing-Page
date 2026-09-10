@@ -11,8 +11,12 @@ export function StickyCta() {
     const apply = document.getElementById("apply");
 
     function onScroll() {
+      if (!apply) {
+        setVisible(false);
+        return;
+      }
       const pastHero = window.scrollY > 380;
-      const applyTop = apply?.getBoundingClientRect().top ?? 9999;
+      const applyTop = apply.getBoundingClientRect().top;
       const applyInView = applyTop < window.innerHeight * 0.72;
       setVisible(pastHero && !applyInView);
     }
@@ -33,7 +37,7 @@ export function StickyCta() {
           </span>
           <span className="block">Free 30-min strategy call</span>
         </p>
-        <Button href="#apply" variant="primary" size="nav" className="shrink-0">
+        <Button href="/#apply" variant="primary" size="nav" className="shrink-0">
           Book My Call
         </Button>
       </div>
