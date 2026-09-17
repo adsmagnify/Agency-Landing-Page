@@ -43,40 +43,47 @@ export function Hero() {
 
       <Container className="relative z-[2] py-16 sm:py-[70px]">
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-          <div className="mb-5 flex flex-wrap items-center justify-center gap-2.5">
-            <Badge size="compact">Student Acquisition</Badge>
-            <Badge size="compact">Coaching Institutes</Badge>
-            <Badge size="compact">Education Institutes</Badge>
+          <div className="mb-5 flex items-center justify-center">
+            <Badge className="max-w-[min(100%,34rem)] justify-center px-4 py-2 text-center text-[0.68rem] leading-snug tracking-[0.12em] whitespace-normal uppercase sm:text-[0.76rem]">
+              Student Acquisition System for Education Institutes
+            </Badge>
           </div>
 
           <h1 className="flex w-full flex-col items-center gap-4 sm:gap-5">
             <span className="font-display text-[clamp(1.95rem,4.6vw,3.2rem)] leading-[1.12] font-extrabold tracking-[-0.02em] text-white">
-              Fill Every Batch With
-              <span className="mt-1 block text-cyan-500">Paid Enrollments</span>
+              Turn Your Marketing Budget{" "}
+              <span className="whitespace-nowrap">
+                Into{" "}
+                <span className="text-cyan-500">Paid Enrollments</span>
+              </span>
             </span>
             <span className="font-display text-[0.7rem] font-semibold tracking-[0.18em] text-cyan-500 uppercase sm:text-xs">
               without
             </span>
-            <span className="grid w-full max-w-2xl grid-cols-2 gap-2 sm:grid-cols-4">
+            <span className="grid w-full grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-2.5">
               {rejected.map((item, index) => (
                 <span
                   key={item}
-                  className="inline-flex min-h-12 items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-2 text-center font-display text-[0.72rem] leading-tight text-white/85 sm:text-[0.78rem]"
+                  className="inline-flex min-h-12 items-center justify-center gap-1 rounded-full border border-white/10 bg-white/[0.04] px-2 py-2 text-center font-display text-[0.68rem] text-white/85 sm:px-2.5 sm:text-[0.74rem]"
                 >
-                  <span className="leading-tight">{item}</span>
+                  <span className="whitespace-nowrap">{item}</span>
                   <Stamp delay={0.42 + index * 0.14} />
                 </span>
               ))}
             </span>
           </h1>
 
-          <p className="mt-6 max-w-[46ch] text-base leading-relaxed text-mist-400 sm:text-[1.05rem]">
-            Indian parents spend more on their children&apos;s education than
-            almost anything else. Yet most institutes still burn ad budget on
-            leads that never enroll. We build the done-for-you Student
-            Acquisition Funnel that turns your ad spend into admissions before
-            the deadline closes.
-          </p>
+          <div className="mt-6 max-w-[52ch] space-y-3 text-base leading-relaxed text-mist-400 sm:text-[1.05rem]">
+            <p>
+              We build the complete Student Acquisition System that takes
+              prospects from first click → qualified enquiry → counselling →
+              paid enrollment.
+            </p>
+            <p>
+              Stop optimizing for cheap leads. Start optimizing for students who
+              actually pay.
+            </p>
+          </div>
 
           <div className="mt-8 flex w-full flex-col items-stretch justify-center gap-3.5 sm:w-auto sm:flex-row sm:items-center">
             <Button href="#apply" variant="primary" size="lg">
