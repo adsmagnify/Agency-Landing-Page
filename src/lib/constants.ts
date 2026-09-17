@@ -32,6 +32,10 @@ export const siteConfig = {
       "https://www.google.com/maps/dir/?api=1&destination=G12,+Pil+Court,+Near+GST+Bhavan,+Churchgate,+Mumbai+400020",
     calendly: "https://calendly.com/adsmagnify_com/30-min-strategy-call",
   },
+  vsl: {
+    src: "/vsl/student-acquisition-funnel.mp4",
+    poster: "/vsl/poster.jpg",
+  },
   socials: {
     facebook: "https://www.facebook.com/adsmagnifyofficial",
     instagram: "https://www.instagram.com/adsmagnify",

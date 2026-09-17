@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { VslPlayer } from "@/components/ui/VslPlayer";
 
 const rejected = [
   "Buying More Leads",
@@ -42,7 +43,7 @@ export function Hero() {
       <div className="pointer-events-none absolute top-8 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-brand-500/25 blur-[100px]" />
 
       <Container className="relative z-[2] py-16 sm:py-[70px]">
-        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+        <div className="mx-auto flex w-full max-w-[54rem] flex-col items-center text-center">
           <div className="mb-5 flex items-center justify-center">
             <Badge className="max-w-[min(100%,34rem)] justify-center px-4 py-2 text-center text-[0.68rem] leading-snug tracking-[0.12em] whitespace-normal uppercase sm:text-[0.76rem]">
               Student Acquisition System for Education Institutes
@@ -83,6 +84,10 @@ export function Hero() {
               Stop optimizing for cheap leads. Start optimizing for students who
               actually pay.
             </p>
+          </div>
+
+          <div className="mt-8 w-full">
+            <VslPlayer />
           </div>
 
           <div className="mt-8 flex w-full flex-col items-stretch justify-center gap-3.5 sm:w-auto sm:flex-row sm:items-center">

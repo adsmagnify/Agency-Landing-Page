@@ -22,6 +22,9 @@
 .DS_Store
 *.pem
 
+# keep the 4K VSL source local; the site serves the compressed mp4
+public/vsl/*.source.mp4
+
 # debug
 npm-debug.log*
 yarn-debug.log*
