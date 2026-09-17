@@ -280,6 +280,8 @@
   html {
     color-scheme: dark;
     scroll-behavior: smooth;
+    scroll-padding-top: var(--header-offset, 8.5rem);
+    scrollbar-gutter: stable;
     overflow-x: clip;
   }
 

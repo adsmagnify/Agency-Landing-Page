@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Loader2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { niches } from "@/content/funnel";
 import { offerWindow } from "@/lib/constants";
 
-type Status = "idle" | "submitting" | "success" | "error";
+type Status = "idle" | "submitting" | "error";
 
 const budgetOptions = [
   "Under ₹50k/mo",
@@ -16,6 +17,7 @@ const budgetOptions = [
 ];
 
 export function ApplyForm() {
+  const router = useRouter();
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -41,28 +43,13 @@ export function ApplyForm() {
       }
 
       form.reset();
-      setStatus("success");
+      router.push("/thank-you");
     } catch (error) {
       setStatus("error");
       setErrorMessage(
         error instanceof Error ? error.message : "Something went wrong."
       );
     }
-  }
-
-  if (status === "success") {
-    return (
-      <div className="flex flex-col items-center gap-4 px-2 py-8 text-center sm:py-10">
-        <CheckCircle2 size={40} className="text-cyan-500" />
-        <h3 className="text-xl font-semibold text-white">
-          You&apos;re in the queue
-        </h3>
-        <p className="text-sm text-mist-500">
-          A strategist will review your institute and reach out within one
-          business day to book the call.
-        </p>
-      </div>
-    );
   }
 
   return (

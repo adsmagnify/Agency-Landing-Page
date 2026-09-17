@@ -8,7 +8,7 @@ export function Apply() {
   return (
     <section
       id="apply"
-      className="relative overflow-hidden bg-[radial-gradient(90%_130%_at_50%_0%,rgba(0,60,138,.5),transparent_60%)] section scroll-mt-32 sm:scroll-mt-36"
+      className="relative overflow-hidden bg-[radial-gradient(90%_130%_at_50%_0%,rgba(0,60,138,.5),transparent_60%)] section scroll-mt-[var(--header-offset,8.5rem)]"
     >
       <div className="pointer-events-none absolute inset-0 bg-noise opacity-40" />
       <div className="pointer-events-none absolute -bottom-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-cyan-500/10 blur-[100px]" />
@@ -28,7 +28,7 @@ export function Apply() {
         <Reveal
           delay={0.08}
           id="apply-form"
-          className="gold-frame mx-auto max-w-2xl scroll-mt-32 rounded-[22px] border-2 border-cyan-500 bg-ink-800 p-5 sm:p-8 lg:p-10 sm:scroll-mt-36"
+          className="gold-frame mx-auto max-w-2xl scroll-mt-[var(--header-offset,8.5rem)] rounded-[22px] border-2 border-cyan-500 bg-ink-800 p-5 sm:p-8 lg:p-10"
         >
           <div className="mb-6">
             <h3 className="font-display text-xl font-extrabold text-white sm:text-2xl">

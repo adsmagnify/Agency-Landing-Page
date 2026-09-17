@@ -1,16 +1,27 @@
+function headerOffset() {
+  if (typeof window === "undefined") return 0;
+  const header = document.querySelector("header");
+  return (header?.getBoundingClientRect().height ?? 0) + 8;
+}
+
 export function scrollToHash(hash: string) {
   if (typeof window === "undefined") return;
 
   const id = hash.replace(/^#/, "");
-  if (!id) return;
+  if (!id || id === "top") {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (window.history.replaceState) {
+      window.history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
+    return;
+  }
 
-  const el =
-    (id === "apply" ? document.getElementById("apply-form") : null) ??
-    document.getElementById(id);
+  const el = document.getElementById(id);
   if (!el) return;
 
   window.setTimeout(() => {
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    const top = el.getBoundingClientRect().top + window.scrollY - headerOffset();
+    window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
   }, 10);
 
   if (window.history.replaceState) {

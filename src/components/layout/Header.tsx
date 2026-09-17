@@ -27,6 +27,17 @@ export function Header() {
   }, []);
 
   useEffect(() => {
+    const header = document.querySelector("header");
+    function syncOffset() {
+      const height = (header?.getBoundingClientRect().height ?? 0) + 8;
+      document.documentElement.style.setProperty("--header-offset", `${height}px`);
+    }
+    syncOffset();
+    window.addEventListener("resize", syncOffset);
+    return () => window.removeEventListener("resize", syncOffset);
+  }, [open]);
+
+  useEffect(() => {
     if (pathname !== "/") {
       setActiveHash("");
       return;
@@ -36,6 +47,12 @@ export function Header() {
 
     function updateActive() {
       const probe = 160;
+      const apply = document.getElementById("apply");
+      if (apply && apply.getBoundingClientRect().top <= probe) {
+        setActiveHash("");
+        return;
+      }
+
       const first = document.getElementById(ids[0]);
       if (first && first.getBoundingClientRect().top > probe + 48) {
         setActiveHash("");
@@ -71,14 +88,14 @@ export function Header() {
   }, [pathname]);
 
   return (
-    <header className="sticky inset-x-0 top-0 z-50">
+    <header className="sticky inset-x-0 top-0 z-50 isolate">
       <OfferBar />
       <div
         className={cn(
           "border-b border-white/9 transition-all duration-300",
           scrolled || open
-            ? "bg-[#070911]/90 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.7)] backdrop-blur-[10px]"
-            : "bg-[#070911]/90 backdrop-blur-[10px]"
+            ? "bg-[#070911] shadow-[0_10px_40px_-20px_rgba(0,0,0,0.7)]"
+            : "bg-[#070911]"
         )}
       >
         <Container className="flex h-[68px] items-center justify-between gap-5">

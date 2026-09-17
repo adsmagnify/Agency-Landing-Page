@@ -30,6 +30,7 @@ export const siteConfig = {
       "https://maps.google.com/maps?q=Pil+Court,+Near+GST+Bhavan,+Churchgate,+Mumbai,+Maharashtra+400020&t=&z=16&ie=UTF8&iwloc=&output=embed",
     mapDirectionsUrl:
       "https://www.google.com/maps/dir/?api=1&destination=G12,+Pil+Court,+Near+GST+Bhavan,+Churchgate,+Mumbai+400020",
+    calendly: "https://calendly.com/adsmagnify_com/30-min-strategy-call",
   },
   socials: {
     facebook: "https://www.facebook.com/adsmagnifyofficial",
