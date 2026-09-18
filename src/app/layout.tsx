@@ -4,7 +4,6 @@ import { Poppins, Figtree } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
 import { StickyCta } from "@/components/layout/StickyCta";
 import { HashScroll } from "@/components/layout/HashScroll";
 import { siteConfig } from "@/lib/constants";
@@ -82,7 +81,6 @@ export default function RootLayout({
         <main className="min-w-0 flex-1">{children}</main>
         <Footer />
         <StickyCta />
-        <WhatsAppFloat />
       </body>
     </html>
   );

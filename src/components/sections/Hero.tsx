@@ -77,8 +77,11 @@ export function Hero() {
           <div className="mt-6 max-w-[52ch] space-y-3 text-base leading-relaxed text-mist-400 sm:text-[1.05rem]">
             <p>
               We build the complete Student Acquisition System that takes
-              prospects from first click → qualified enquiry → counselling →
-              paid enrollment.
+              prospects from{" "}
+              <span className="font-semibold text-cyan-500">
+                first click → qualified enquiry → counselling → paid enrollment
+              </span>
+              .
             </p>
             <p>
               Stop optimizing for cheap leads. Start optimizing for students who

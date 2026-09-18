@@ -18,8 +18,8 @@ export function VslPlayer() {
         <video
           ref={videoRef}
           className="aspect-[1600/844] h-auto w-full bg-black object-cover"
-          src={siteConfig.vsl.src}
-          poster={siteConfig.vsl.poster}
+          src={`${encodeURI(siteConfig.vsl.src)}?v=2`}
+          poster={`${encodeURI(siteConfig.vsl.poster)}?v=2`}
           playsInline
           preload="metadata"
           controls={playing}
