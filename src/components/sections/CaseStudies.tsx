@@ -53,14 +53,14 @@ export function CaseStudies() {
                   <p className="mt-1.5 text-[0.82rem] text-mist-500">
                     {study.detail}
                   </p>
-                  <span className="mt-5 inline-flex items-center gap-1.5 font-display text-sm font-bold text-white group-hover:text-cyan-500">
+                  {/* <span className="mt-5 inline-flex items-center gap-1.5 font-display text-sm font-bold text-white group-hover:text-cyan-500">
                     Read the case study
                     <ArrowUpRight
                       size={16}
                       className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                       aria-hidden
                     />
-                  </span>
+                  </span> */}
                 </div>
               </Link>
             </article>

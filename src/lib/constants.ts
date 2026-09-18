@@ -33,7 +33,7 @@ export const siteConfig = {
     calendly: "https://calendly.com/adsmagnify_com/30-min-strategy-call",
   },
   vsl: {
-    src: "/vsl/vinay sir Student acquisation funnel-1.mp4",
+    src: "/vsl/vinay sir Student acquisation funnel_revised1.mp4",
     poster: "/vsl/poster.jpg",
   },
   socials: {
