@@ -22,9 +22,7 @@ export function Solution() {
       />
 
       <div className="relative grid items-center gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
-        <Reveal>
-          <FunnelGraphic />
-        </Reveal>
+        <FunnelGraphic />
 
         <StaggerGroup className="flex flex-col gap-5">
           {solutionSteps.map((item, index) => (

@@ -8,10 +8,10 @@ export function Apply() {
   return (
     <section
       id="apply"
-      className="relative overflow-hidden bg-[radial-gradient(90%_130%_at_50%_0%,rgba(0,60,138,.5),transparent_60%)] section scroll-mt-[var(--header-offset,8.5rem)]"
+      className="relative overflow-x-clip bg-[radial-gradient(90%_130%_at_50%_0%,rgba(0,60,138,.5),transparent_60%)] section scroll-mt-[var(--header-offset,8.5rem)]"
     >
       <div className="pointer-events-none absolute inset-0 bg-noise opacity-40" />
-      <div className="pointer-events-none absolute -bottom-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-cyan-500/10 blur-[100px]" />
+      <div className="pointer-events-none absolute -bottom-24 left-1/2 h-48 w-48 -translate-x-1/2 rounded-full bg-cyan-500/10 blur-3xl sm:h-72 sm:w-72 sm:blur-[80px]" />
       <Container className="relative section-gap">
         <Reveal className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <h2 className="headline-2 mx-auto max-w-[20ch]">

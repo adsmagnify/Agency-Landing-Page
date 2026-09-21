@@ -54,12 +54,12 @@ function bandPoints(index: number) {
 
 export function FunnelGraphic() {
   return (
-    <div className="relative mx-auto w-full max-w-[420px]" aria-hidden>
+    <div className="relative mx-auto w-full max-w-[min(100%,420px)]" aria-hidden>
       <div className="pointer-events-none absolute inset-x-[22%] bottom-8 h-24 rounded-full bg-cyan-500/25 blur-[48px]" />
 
       <svg
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
-        className="relative z-[1] h-auto w-full"
+        className="relative z-[1] h-auto w-full overflow-visible"
         role="presentation"
       >
         <defs>
@@ -79,6 +79,34 @@ export function FunnelGraphic() {
             <stop offset="0%" stopColor="#ffc619" />
             <stop offset="100%" stopColor="#ffd75e" />
           </linearGradient>
+          <filter
+            id="funnelGlowBlue"
+            x="-20%"
+            y="-20%"
+            width="140%"
+            height="140%"
+          >
+            <feDropShadow
+              dx="0"
+              dy="8"
+              stdDeviation="6"
+              floodColor="rgba(0,74,173,0.28)"
+            />
+          </filter>
+          <filter
+            id="funnelGlowGold"
+            x="-25%"
+            y="-25%"
+            width="150%"
+            height="150%"
+          >
+            <feDropShadow
+              dx="0"
+              dy="12"
+              stdDeviation="8"
+              floodColor="rgba(255,198,25,0.35)"
+            />
+          </filter>
         </defs>
 
         {layers.map((layer, index) => {
@@ -90,7 +118,7 @@ export function FunnelGraphic() {
               key={layer.label}
               initial={{ opacity: 0, y: -12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{
                 duration: 0.5,
                 delay: 0.08 + index * 0.1,
@@ -100,11 +128,7 @@ export function FunnelGraphic() {
               <polygon
                 points={points}
                 fill={layer.fill}
-                style={{
-                  filter: layer.gold
-                    ? "drop-shadow(0 12px 18px rgba(255,198,25,0.35))"
-                    : "drop-shadow(0 8px 14px rgba(0,74,173,0.28))",
-                }}
+                filter={layer.gold ? "url(#funnelGlowGold)" : "url(#funnelGlowBlue)"}
               />
               {layer.gold ? (
                 <text
@@ -143,7 +167,7 @@ export function FunnelGraphic() {
         })}
       </svg>
 
-      <p className="mt-4 text-center text-[0.82rem] text-mist-500">
+      <p className="mt-4 px-2 text-center text-[0.82rem] text-mist-500">
         Spend peaks at the deadline. Only paying students come out the bottom.
       </p>
     </div>

@@ -19,9 +19,9 @@ export function Scarcity() {
   ];
 
   return (
-    <section className="navy-band relative overflow-hidden py-16 text-center sm:py-20 lg:py-[5.75rem]">
+    <section className="navy-band relative overflow-x-clip py-16 text-center sm:py-20 lg:py-[5.75rem]">
       <div className="pointer-events-none absolute inset-0 bg-noise opacity-40" />
-      <div className="pointer-events-none absolute top-[-6rem] left-1/2 h-64 w-[28rem] -translate-x-1/2 rounded-full bg-cyan-500/15 blur-[90px]" />
+      <div className="pointer-events-none absolute top-[-6rem] left-1/2 h-48 w-[18rem] -translate-x-1/2 rounded-full bg-cyan-500/15 blur-3xl sm:h-64 sm:w-[28rem] sm:blur-[70px]" />
       <Container className="relative flex flex-col items-center">
         <h2 className="headline-2 text-white">
           <span className="text-cyan-500">🔒</span> Onboarding closes soon

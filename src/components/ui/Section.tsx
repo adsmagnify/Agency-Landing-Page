@@ -52,7 +52,7 @@ export function Section({
         variantClasses[variant],
         border && "border-section",
         props.id && "scroll-mt-[var(--header-offset,8.5rem)]",
-        glow && "overflow-hidden",
+        glow && "overflow-x-clip",
         className
       )}
       {...props}

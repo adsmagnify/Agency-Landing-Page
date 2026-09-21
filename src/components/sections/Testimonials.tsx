@@ -55,9 +55,9 @@ export function Testimonials() {
   const activeScreen = screens[screenIndex] ?? screens[0];
 
   return (
-    <section className="relative overflow-hidden section">
+    <section className="relative overflow-x-clip section">
       <div className="pointer-events-none absolute inset-0 bg-noise opacity-40" />
-      <div className="pointer-events-none absolute top-0 left-1/2 h-64 w-[32rem] -translate-x-1/2 rounded-full bg-brand-500/15 blur-[100px]" />
+      <div className="pointer-events-none absolute top-0 left-1/2 h-48 w-[18rem] -translate-x-1/2 rounded-full bg-brand-500/15 blur-3xl sm:h-64 sm:w-[32rem] sm:blur-[80px]" />
       <Container className="relative section-gap">
         <SectionHeading
           align="center"

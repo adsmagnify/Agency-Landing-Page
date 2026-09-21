@@ -426,8 +426,8 @@
       rgba(255, 198, 25, 0.16) 50%,
       transparent 60%
     );
-    animation: shine-sweep 3.4s ease-in-out infinite;
     pointer-events: none;
+    animation: shine-sweep 3.4s ease-in-out infinite;
   }
 
   .marquee-mask {

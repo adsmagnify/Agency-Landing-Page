@@ -35,7 +35,7 @@ export function StaggerGroup({
       }}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.15 }}
+      viewport={{ once: true, amount: 0.05 }}
     >
       {children}
     </motion.div>

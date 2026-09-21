@@ -36,11 +36,11 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[560px] items-center overflow-hidden"
+      className="relative flex min-h-[560px] items-center overflow-x-clip"
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(80%_70%_at_50%_-10%,rgba(0,74,173,.45),transparent_58%),linear-gradient(180deg,#070911,#0a1328_48%,#070911)]" />
       <div className="pointer-events-none absolute inset-0 bg-noise" />
-      <div className="pointer-events-none absolute top-8 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-brand-500/25 blur-[100px]" />
+      <div className="pointer-events-none absolute top-8 left-1/2 h-52 w-52 -translate-x-1/2 rounded-full bg-brand-500/25 blur-3xl sm:h-72 sm:w-72 sm:blur-[80px]" />
 
       <Container className="relative z-[2] py-16 sm:py-[70px]">
         <div className="mx-auto flex w-full max-w-[70rem] flex-col items-center text-center">
@@ -53,7 +53,7 @@ export function Hero() {
           <h1 className="flex w-full flex-col items-center gap-4 sm:gap-5">
             <span className="max-w-[54rem] font-display text-[clamp(1.95rem,4.6vw,3.2rem)] leading-[1.12] font-extrabold tracking-[-0.02em] text-white">
               Turn Your Marketing Budget{" "}
-              <span className="whitespace-nowrap">
+              <span className="sm:whitespace-nowrap">
                 Into{" "}
                 <span className="text-cyan-500">Paid Enrollments</span>
               </span>
@@ -65,9 +65,9 @@ export function Hero() {
               {rejected.map((item, index) => (
                 <span
                   key={item}
-                  className="inline-flex h-12 shrink-0 items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-4 text-[0.8rem] font-display text-white/90 sm:text-[0.86rem]"
+                  className="inline-flex min-h-12 max-w-full items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-center font-display text-[0.75rem] text-white/90 sm:h-12 sm:px-4 sm:text-[0.86rem]"
                 >
-                  <span className="whitespace-nowrap">{item}</span>
+                  <span className="max-w-full sm:whitespace-nowrap">{item}</span>
                   <Stamp delay={0.42 + index * 0.14} />
                 </span>
               ))}
