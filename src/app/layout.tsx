@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { StickyCta } from "@/components/layout/StickyCta";
 import { HashScroll } from "@/components/layout/HashScroll";
+import { MetaPixel } from "@/components/analytics/MetaPixel";
 import { siteConfig } from "@/lib/constants";
 import { buildMetadata, organizationJsonLd } from "@/lib/seo";
 
@@ -67,6 +68,7 @@ export default function RootLayout({
             __html: JSON.stringify(organizationJsonLd()),
           }}
         />
+        <MetaPixel />
         <Script id="microsoft-clarity" strategy="afterInteractive">
           {`
             (function(c,l,a,r,i,t,y){

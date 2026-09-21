@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { CalendlyEmbed } from "@/components/forms/CalendlyEmbed";
 import { buildMetadata } from "@/lib/seo";
+import { MetaLeadEvent } from "@/components/analytics/MetaPixel";
 import { siteConfig } from "@/lib/constants";
 
 const whatsappNumber = siteConfig.contact.phone.replace(/\D/g, "");
@@ -20,6 +21,7 @@ export const metadata: Metadata = buildMetadata({
 export default function ThankYouPage() {
   return (
     <section className="relative overflow-hidden py-20 sm:py-28">
+      <MetaLeadEvent />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(80%_50%_at_50%_-10%,rgba(0,74,173,.38),transparent_55%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_40%_at_80%_110%,rgba(255,198,25,.08),transparent_50%)]" />
 
@@ -57,8 +59,8 @@ export default function ThankYouPage() {
           </div>
 
           <div className="mt-10 flex flex-col items-center gap-4">
-            <Button href="/" variant="ghost" size="lg">
-              Back to Home
+            <Button href={siteConfig.url} variant="ghost" size="lg" target="_self">
+              Go to Adsmagnify.com
             </Button>
             <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-mist-400">
               <Phone size={16} className="text-cyan-500" aria-hidden />

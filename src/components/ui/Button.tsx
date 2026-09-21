@@ -37,6 +37,7 @@ interface LinkButtonProps extends BaseProps {
   href: string;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
   type?: never;
+  target?: string;
 }
 
 interface ClickButtonProps extends BaseProps {
@@ -86,6 +87,7 @@ export function Button({
 
   if (href) {
     const userOnClick = (rest as LinkButtonProps).onClick;
+    const target = (rest as LinkButtonProps).target;
 
     if (isInPageHash(href) || isExternalHref(href)) {
       return (
@@ -93,7 +95,10 @@ export function Button({
           href={href}
           className={classes}
           {...(isExternalHref(href)
-            ? { target: "_blank", rel: "noreferrer noopener" }
+            ? {
+                target: target ?? "_blank",
+                rel: "noreferrer noopener",
+              }
             : {})}
           onClick={(event) => {
             userOnClick?.(event);
