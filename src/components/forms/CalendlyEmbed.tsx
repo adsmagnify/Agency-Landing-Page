@@ -16,14 +16,14 @@ export function CalendlyEmbed({ url }: { url: string }) {
   }, [url]);
 
   if (!src) {
-    return <div className="h-[720px] w-full bg-white" aria-hidden />;
+    return <div className="h-[700px] min-h-[700px] w-full bg-white" aria-hidden />;
   }
 
   return (
     <iframe
       src={src}
       title="Book a call on Calendly"
-      className="h-[720px] w-full border-0 bg-white"
+      className="h-[700px] min-h-[700px] w-full min-w-[320px] border-0 bg-white"
     />
   );
 }

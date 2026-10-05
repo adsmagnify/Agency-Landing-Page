@@ -1,7 +1,7 @@
 import { Phone } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
-import { ApplyForm } from "@/components/forms/ApplyForm";
+import { CalendlyEmbed } from "@/components/forms/CalendlyEmbed";
 import { offerWindow, siteConfig } from "@/lib/constants";
 
 export function Apply() {
@@ -28,17 +28,17 @@ export function Apply() {
         <Reveal
           delay={0.08}
           id="apply-form"
-          className="gold-frame mx-auto max-w-2xl scroll-mt-[var(--header-offset,8.5rem)] rounded-[22px] border-2 border-cyan-500 bg-ink-800 p-5 sm:p-8 lg:p-10"
+          className="gold-frame mx-auto w-full max-w-[920px] scroll-mt-[var(--header-offset,8.5rem)] overflow-hidden rounded-[22px] border-2 border-cyan-500 bg-ink-800"
         >
-          <div className="mb-6">
+          <div className="border-b border-white/8 px-6 py-5 text-left sm:px-8">
             <h3 className="font-display text-xl font-extrabold text-white sm:text-2xl">
-              Apply for your strategy call
+              Book your 30-minute strategy call
             </h3>
             <p className="mt-1.5 text-sm text-mist-500">
-              Takes about 2 minutes. We reply within one business day.
+              Pick a time that works for you. It lands straight on our calendar.
             </p>
           </div>
-          <ApplyForm />
+          <CalendlyEmbed url={siteConfig.contact.calendly} />
         </Reveal>
 
         <Reveal className="mx-auto flex max-w-2xl flex-col items-center gap-2.5 text-center text-sm text-mist-400">
