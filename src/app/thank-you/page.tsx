@@ -17,6 +17,8 @@ export const metadata: Metadata = buildMetadata({
   noIndex: true,
 });
 
+export const dynamic = "force-dynamic";
+
 export default function ThankYouPage() {
   return (
     <section className="relative overflow-hidden py-20 sm:py-28">
@@ -27,8 +29,8 @@ export default function ThankYouPage() {
       <Container className="relative">
         <div className="mx-auto max-w-3xl text-center">
           <p className="eyebrow">You&apos;re booked</p>
-          <h1 className="headline-1 mx-auto mt-2 max-w-[14ch]">
-            Hope to see you soon.
+          <h1 className="headline-1 mx-auto mt-2 whitespace-nowrap">
+            Your call is confirmed.
           </h1>
           <p className="mx-auto mt-6 max-w-[46ch] text-[1.15rem] leading-relaxed text-mist-300">
             Your 60-minute strategy call is confirmed. Check your email for the

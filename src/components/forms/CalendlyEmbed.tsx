@@ -13,6 +13,15 @@ export function CalendlyEmbed({ url }: { url: string }) {
     params.set("embed_type", "Inline");
     params.set("hide_gdpr_banner", "1");
     setSrc(`${eventUrl}?${params.toString()}`);
+
+    const onMessage = (event: MessageEvent) => {
+      if (event.origin !== "https://calendly.com") return;
+      if (event.data?.event !== "calendly.event_scheduled") return;
+      window.location.assign(`${window.location.origin}/thank-you`);
+    };
+
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
   }, [url]);
 
   if (!src) {
