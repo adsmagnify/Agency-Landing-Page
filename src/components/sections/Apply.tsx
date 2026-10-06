@@ -32,7 +32,7 @@ export function Apply() {
         >
           <div className="border-b border-white/8 px-6 py-5 text-left sm:px-8">
             <h3 className="font-display text-xl font-extrabold text-white sm:text-2xl">
-              Book your 30-minute strategy call
+              Book your 60-minute strategy call
             </h3>
             <p className="mt-1.5 text-sm text-mist-500">
               Pick a time that works for you. It lands straight on our calendar.
@@ -42,7 +42,7 @@ export function Apply() {
         </Reveal>
 
         <Reveal className="mx-auto flex max-w-2xl flex-col items-center gap-2.5 text-center text-sm text-mist-400">
-          <p>Free 30-minute call. No pitch deck.</p>
+          <p>Free 60-minute call. No pitch deck.</p>
           <p>
             Only {offerWindow.capacity} institutes this intake ·{" "}
             <span className="font-semibold text-cyan-500">

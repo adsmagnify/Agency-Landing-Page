@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Phone } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { CalendlyEmbed } from "@/components/forms/CalendlyEmbed";
 import { buildMetadata } from "@/lib/seo";
 import { MetaLeadEvent } from "@/components/analytics/MetaPixel";
 import { siteConfig } from "@/lib/constants";
@@ -11,9 +10,9 @@ const whatsappNumber = siteConfig.contact.phone.replace(/\D/g, "");
 const telHref = siteConfig.contact.phone.replace(/[^+\d]/g, "");
 
 export const metadata: Metadata = buildMetadata({
-  title: "Application received",
+  title: "You're booked",
   description:
-    "Your Student Acquisition Funnel application is in. Book a 30-minute strategy call on Calendly, or wait for a strategist to reach out within one business day.",
+    "Your 60-minute strategy call is confirmed. We look forward to seeing you.",
   path: "/thank-you",
   noIndex: true,
 });
@@ -27,44 +26,23 @@ export default function ThankYouPage() {
 
       <Container className="relative">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="eyebrow">Application received</p>
-          <h1 className="headline-1 mx-auto mt-2 max-w-[16ch]">
-            You&apos;re in the queue.
+          <p className="eyebrow">You&apos;re booked</p>
+          <h1 className="headline-1 mx-auto mt-2 max-w-[14ch]">
+            Hope to see you soon.
           </h1>
           <p className="mx-auto mt-6 max-w-[46ch] text-[1.15rem] leading-relaxed text-mist-300">
-            A strategist will still review your institute. If you don&apos;t
-            want to wait, book the 30-minute strategy call on Calendly now.
+            Your 60-minute strategy call is confirmed. Check your email for the
+            calendar invite. We&apos;ll walk through where your admissions are
+            leaking — and how to fill the batch before the deadline closes.
           </p>
 
-          <div className="mt-8 flex flex-col items-center gap-3">
-            <Button href={siteConfig.contact.calendly} variant="primary" size="lg">
-              Book a time on Calendly
-            </Button>
-            <p className="text-sm text-mist-500">
-              Free 30-minute call. Pick a slot that works for you.
-            </p>
-          </div>
-
-          <div className="gold-frame mt-10 overflow-hidden rounded-[22px] border-2 border-cyan-500 bg-ink-800">
-            <div className="border-b border-white/8 px-6 py-5 text-left sm:px-8">
-              <p className="font-display text-[0.72rem] font-bold tracking-[0.18em] text-cyan-500 uppercase">
-                Or pick a slot below
-              </p>
-              <p className="mt-2 text-[1.02rem] leading-relaxed text-mist-300">
-                This is our live Calendly calendar. Choose a time and it lands
-                straight on our schedule.
-              </p>
-            </div>
-            <CalendlyEmbed url={siteConfig.contact.calendly} />
-          </div>
-
           <div className="mt-10 flex flex-col items-center gap-4">
-            <Button href={siteConfig.url} variant="ghost" size="lg" target="_self">
+            <Button href={siteConfig.url} variant="primary" size="lg" target="_self">
               Go to Adsmagnify.com
             </Button>
             <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-mist-400">
               <Phone size={16} className="text-cyan-500" aria-hidden />
-              Prefer to talk now?
+              Need to reschedule?
               <a
                 href={`tel:${telHref}`}
                 className="font-semibold text-cyan-500 hover:text-cyan-400"

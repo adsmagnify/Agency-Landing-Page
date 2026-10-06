@@ -6,12 +6,12 @@ export function CalendlyEmbed({ url }: { url: string }) {
   const [src, setSrc] = useState("");
 
   useEffect(() => {
-    const eventUrl = url.split("?")[0].replace(/\/$/, "");
-    const params = new URLSearchParams({
-      embed_domain: window.location.hostname,
-      embed_type: "Inline",
-      hide_gdpr_banner: "1",
-    });
+    const parsed = new URL(url, window.location.origin);
+    const eventUrl = `${parsed.origin}${parsed.pathname}`.replace(/\/$/, "");
+    const params = new URLSearchParams(parsed.search);
+    params.set("embed_domain", window.location.hostname);
+    params.set("embed_type", "Inline");
+    params.set("hide_gdpr_banner", "1");
     setSrc(`${eventUrl}?${params.toString()}`);
   }, [url]);
 

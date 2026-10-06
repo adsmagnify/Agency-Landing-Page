@@ -18,7 +18,7 @@ export function MidCta({
         {label}
       </Button>
       <p className="text-[0.86rem] text-mist-500">
-        {sub ?? `${offerWindow.remaining} spots left this intake. Free 30-minute call.`}
+        {sub ?? `${offerWindow.remaining} spots left this intake. Free 60-minute call.`}
       </p>
     </div>
   );

@@ -35,7 +35,7 @@ export function StickyCta() {
           <span className="font-semibold text-white">
             {offerWindow.remaining} spots left
           </span>
-          <span className="block">Free 30-min strategy call</span>
+          <span className="block">Free 60-min strategy call</span>
         </p>
         <Button href="/#apply" variant="primary" size="nav" className="shrink-0">
           Book My Call
