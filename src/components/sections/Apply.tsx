@@ -1,7 +1,7 @@
 import { Phone } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
-import { CalendlyEmbed } from "@/components/forms/CalendlyEmbed";
+import { Button } from "@/components/ui/Button";
 import { offerWindow, siteConfig } from "@/lib/constants";
 
 export function Apply() {
@@ -28,21 +28,27 @@ export function Apply() {
         <Reveal
           delay={0.08}
           id="apply-form"
-          className="gold-frame mx-auto w-full max-w-[920px] scroll-mt-[var(--header-offset,8.5rem)] overflow-hidden rounded-[22px] border-2 border-cyan-500 bg-ink-800"
+          className="gold-frame mx-auto flex w-full max-w-[640px] scroll-mt-[var(--header-offset,8.5rem)] flex-col items-center overflow-hidden rounded-[22px] border-2 border-cyan-500 bg-ink-800 px-6 py-10 text-center sm:px-10 sm:py-12"
         >
-          <div className="border-b border-white/8 px-6 py-5 text-left sm:px-8">
-            <h3 className="font-display text-xl font-extrabold text-white sm:text-2xl">
-              Book your 60-minute strategy call
-            </h3>
-            <p className="mt-1.5 text-sm text-mist-500">
-              Pick a time that works for you. It lands straight on our calendar.
-            </p>
-          </div>
-          <CalendlyEmbed url={siteConfig.contact.calendly} />
+          <h3 className="font-display text-xl font-extrabold text-white sm:text-2xl">
+            Ready when you are
+          </h3>
+          <p className="mt-2 max-w-[40ch] text-sm leading-relaxed text-mist-500">
+            Pick a time on the next page. It lands on our calendar.
+          </p>
+          <Button
+            href={siteConfig.contact.bookingPage}
+            variant="primary"
+            size="lg"
+            className="mt-7 w-full max-w-md"
+            showArrow
+          >
+            Book a 45-minute strategy call
+          </Button>
         </Reveal>
 
         <Reveal className="mx-auto flex max-w-2xl flex-col items-center gap-2.5 text-center text-sm text-mist-400">
-          <p>Free 60-minute call. No pitch deck.</p>
+          <p>Free 45-minute call. No pitch deck.</p>
           <p>
             Only {offerWindow.capacity} institutes this intake ·{" "}
             <span className="font-semibold text-cyan-500">

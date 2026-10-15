@@ -12,7 +12,7 @@ const telHref = siteConfig.contact.phone.replace(/[^+\d]/g, "");
 export const metadata: Metadata = buildMetadata({
   title: "You're booked",
   description:
-    "Your 60-minute strategy call is confirmed. We look forward to seeing you.",
+    "Your 45-minute strategy call is confirmed. We look forward to seeing you.",
   path: "/thank-you",
   noIndex: true,
 });
@@ -33,7 +33,7 @@ export default function ThankYouPage() {
             Your call is confirmed.
           </h1>
           <p className="mx-auto mt-6 max-w-[46ch] text-[1.15rem] leading-relaxed text-mist-300">
-            Your 60-minute strategy call is confirmed. Check your email for the
+            Your 45-minute strategy call is confirmed. Check your email for the
             calendar invite. We&apos;ll walk through where your admissions are
             leaking — and how to fill the batch before the deadline closes.
           </p>

@@ -5,6 +5,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { StickyCta } from "@/components/layout/StickyCta";
+import { OnboardToast } from "@/components/layout/OnboardToast";
 import { HashScroll } from "@/components/layout/HashScroll";
 import { MetaPixel } from "@/components/analytics/MetaPixel";
 import { siteConfig } from "@/lib/constants";
@@ -83,6 +84,7 @@ export default function RootLayout({
         <main className="min-w-0 flex-1">{children}</main>
         <Footer />
         <StickyCta />
+        <OnboardToast />
       </body>
     </html>
   );

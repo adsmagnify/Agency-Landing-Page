@@ -50,7 +50,7 @@ export function Solution() {
         collapse the moment the season ends.
       </Reveal>
 
-      <MidCta label="See If We’re A Fit" sub="Free 60-minute strategy call." />
+      <MidCta label="See If We’re A Fit" sub="Free 45-minute strategy call." />
     </Section>
   );
 }

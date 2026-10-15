@@ -31,7 +31,8 @@ export const siteConfig = {
     mapDirectionsUrl:
       "https://www.google.com/maps/dir/?api=1&destination=G12,+Pil+Court,+Near+GST+Bhavan,+Churchgate,+Mumbai+400020",
     calendly:
-      "https://calendly.com/adsmagnify_com/60-minute-strategy-call?month=2026-10",
+      "https://calendly.com/adsmagnify_com/book-one-one-call?month=2026-10",
+    bookingPage: "/book",
   },
   vsl: {
     src: "/vsl/vinay sir Student acquisation funnel_revised1.mp4",
