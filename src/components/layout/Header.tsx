@@ -1,30 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
-import { navLinks, siteConfig } from "@/lib/constants";
+import { Lock } from "lucide-react";
+import { offerWindow, siteConfig } from "@/lib/constants";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { cn } from "@/lib/utils";
-import { OfferBar } from "@/components/layout/OfferBar";
+import { useOfferCountdown } from "@/components/layout/OfferBar";
 
 export function Header() {
   const pathname = usePathname();
   const onHome = pathname === "/";
-  const sectionHref = (href: string) => (onHome ? href : `/${href}`);
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [activeHash, setActiveHash] = useState("");
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const remaining = useOfferCountdown();
+  const timer = remaining.ready ? remaining.label : "00d 00:00:00";
 
   useEffect(() => {
     const header = document.querySelector("header");
@@ -35,74 +24,25 @@ export function Header() {
     syncOffset();
     window.addEventListener("resize", syncOffset);
     return () => window.removeEventListener("resize", syncOffset);
-  }, [open]);
-
-  useEffect(() => {
-    if (pathname !== "/") {
-      setActiveHash("");
-      return;
-    }
-
-    const ids = navLinks.map((link) => link.href.slice(1));
-
-    function updateActive() {
-      const probe = 160;
-      const apply = document.getElementById("apply");
-      if (apply && apply.getBoundingClientRect().top <= probe) {
-        setActiveHash("");
-        return;
-      }
-
-      const first = document.getElementById(ids[0]);
-      if (first && first.getBoundingClientRect().top > probe + 48) {
-        setActiveHash("");
-        return;
-      }
-
-      let current = ids[0];
-      for (const id of ids) {
-        const el = document.getElementById(id);
-        if (!el) continue;
-        if (el.getBoundingClientRect().top <= probe) current = id;
-      }
-      setActiveHash(`#${current}`);
-    }
-
-    let ticking = false;
-    function onScroll() {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        updateActive();
-        ticking = false;
-      });
-    }
-
-    updateActive();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, [pathname]);
+  }, []);
 
   return (
     <header className="sticky inset-x-0 top-0 z-50 isolate">
-      <OfferBar />
-      <div
-        className={cn(
-          "border-b border-white/9 transition-all duration-300",
-          scrolled || open
-            ? "bg-[#070911] shadow-[0_10px_40px_-20px_rgba(0,0,0,0.7)]"
-            : "bg-[#070911]"
-        )}
-      >
-        <Container className="flex h-[68px] items-center justify-between gap-5">
+      <div className="relative border-b border-cyan-500/20 bg-[#070911]/92 shadow-[0_18px_50px_-28px_rgba(0,0,0,0.85)] backdrop-blur-xl">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"
+        />
+
+        <Container className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-2.5 py-2.5 sm:py-3 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
           <a
             href={onHome ? "#top" : "/"}
             aria-label={siteConfig.name}
-            className="flex shrink-0 items-center"
+            className="flex shrink-0 items-center justify-self-start"
           >
             <Image
               src="/logo-footer.png"
@@ -114,93 +54,43 @@ export function Header() {
             />
           </a>
 
-          <nav className="hidden items-center gap-[26px] text-[0.93rem] lg:flex">
-            {navLinks.map((link) => {
-              const active = activeHash === link.href;
-              return (
-                <a
-                  key={link.href}
-                  href={sectionHref(link.href)}
-                  onClick={() => setActiveHash(link.href)}
-                  className={cn(
-                    "relative py-2 transition-colors hover:text-cyan-500",
-                    active ? "text-cyan-500" : "text-mist-300"
-                  )}
-                >
-                  {link.label}
-                  {active && (
-                    <span
-                      aria-hidden
-                      className="absolute inset-x-0 -bottom-0.5 h-px bg-cyan-500"
-                    />
-                  )}
-                </a>
-              );
-            })}
-          </nav>
+          <div className="col-span-2 flex justify-center lg:col-span-1 lg:col-start-2 lg:row-start-1">
+            <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-cyan-500/30 bg-brand-600/35 px-3 py-1.5 shadow-[inset_0_1px_0_rgba(255,198,25,0.12)] sm:gap-2.5 sm:px-4">
+              <Lock
+                size={12}
+                className="shrink-0 text-cyan-500"
+                aria-hidden
+              />
+              <p className="flex min-w-0 flex-wrap items-center justify-center gap-x-2 gap-y-0.5 text-[0.7rem] text-mist-300 sm:text-[0.78rem]">
+                <span className="tracking-[0.12em] text-mist-400 uppercase">
+                  Closes
+                </span>
+                <b className="font-display text-[0.82rem] font-extrabold tabular-nums text-cyan-500 sm:text-[0.92rem]">
+                  {timer}
+                </b>
+                <span className="hidden h-3 w-px bg-white/20 sm:block" aria-hidden />
+                <span className="text-center">
+                  Only {offerWindow.capacity} institutes this intake ·{" "}
+                  <b className="font-semibold text-cyan-500">
+                    {offerWindow.remaining} spots left
+                  </b>{" "}
+                  ({offerWindow.filled} filled)
+                </span>
+              </p>
+            </div>
+          </div>
 
-          <div className="hidden lg:block">
-            <Button href={siteConfig.contact.bookingPage} variant="primary" size="nav">
+          <div className="col-start-2 row-start-1 justify-self-end lg:col-start-3">
+            <Button
+              href={siteConfig.contact.bookingPage}
+              variant="primary"
+              size="nav"
+              className="shrink-0 shadow-[0_8px_24px_-10px_rgba(255,198,25,0.55)]"
+            >
               Apply Now
             </Button>
           </div>
-
-          <button
-            type="button"
-            aria-label="Toggle menu"
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/12 text-white lg:hidden"
-            onClick={() => setOpen((value) => !value)}
-          >
-            {open ? <X size={18} /> : <Menu size={18} />}
-          </button>
         </Container>
-
-        <AnimatePresence>
-          {open && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.25, ease: "easeInOut" }}
-              className="overflow-hidden border-b border-white/9 bg-ink-950 lg:hidden"
-            >
-              <Container className="flex max-h-[min(70dvh,32rem)] flex-col gap-1 overflow-y-auto py-4">
-                {navLinks.map((link) => {
-                  const active = activeHash === link.href;
-                  return (
-                    <a
-                      key={link.href}
-                      href={sectionHref(link.href)}
-                      onClick={() => {
-                        setActiveHash(link.href);
-                        setOpen(false);
-                      }}
-                      className={cn(
-                        "rounded-lg border-l-2 px-3 py-3 text-sm font-medium transition-colors hover:bg-white/5 hover:text-cyan-500",
-                        active
-                          ? "border-cyan-500 bg-white/5 text-cyan-500"
-                          : "border-transparent text-mist-300"
-                      )}
-                    >
-                      {link.label}
-                    </a>
-                  );
-                })}
-                <div className="mt-2">
-                  <Button
-                    href={siteConfig.contact.bookingPage}
-                    variant="primary"
-                    size="lg"
-                    className="w-full"
-                    onClick={() => setOpen(false)}
-                  >
-                    Apply Now
-                  </Button>
-                </div>
-              </Container>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
     </header>
   );
