@@ -201,7 +201,7 @@ export const programs = [
     desc: "We run your Meta + Google ads on our enrollment-first framework. You handle follow-up and closing.",
     featured: false,
     cta: "Book a Call",
-    href: "#apply",
+    href: "/book",
     items: [
       "Deadline-timed campaigns",
       "Enrollment-focused creative",
@@ -214,7 +214,7 @@ export const programs = [
     desc: "The full funnel: ads, instant response, follow-up automation, and dashboard. Backed by the Full-Batch Guarantee.",
     featured: true,
     cta: "Claim My Spot",
-    href: "#apply",
+    href: "/book",
     items: [
       "Everything in Ad Management",
       "Instant lead-response automation",
@@ -228,7 +228,7 @@ export const programs = [
     desc: "End-to-end managed growth across every intake and location, with dedicated strategy and priority support.",
     featured: false,
     cta: "Book a Call",
-    href: "#apply",
+    href: "/book",
     items: [
       "Everything in the Funnel",
       "Multi-branch / multi-intake scaling",

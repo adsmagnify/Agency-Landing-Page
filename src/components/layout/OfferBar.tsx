@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
-import { offerWindow } from "@/lib/constants";
+import { offerWindow, siteConfig } from "@/lib/constants";
 
 function pad(n: number) {
   return String(n).padStart(2, "0");
@@ -44,7 +43,6 @@ export function useOfferCountdown() {
 
 export function OfferBar() {
   const remaining = useOfferCountdown();
-  const applyHref = usePathname() === "/" ? "#apply" : "/#apply";
 
   return (
     <div
@@ -72,7 +70,7 @@ export function OfferBar() {
           |
         </span>
         <a
-          href={applyHref}
+          href={siteConfig.contact.bookingPage}
           className="font-bold text-cyan-500 transition-colors hover:text-white"
         >
           Apply Now →

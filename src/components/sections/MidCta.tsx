@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/Button";
-import { offerWindow } from "@/lib/constants";
+import { offerWindow, siteConfig } from "@/lib/constants";
 
 export function MidCta({
   label,
@@ -14,7 +14,7 @@ export function MidCta({
         aria-hidden
         className="h-px w-16 bg-gradient-to-r from-transparent via-cyan-500/60 to-transparent"
       />
-      <Button href="#apply" variant="primary" size="lg" pulse>
+      <Button href={siteConfig.contact.bookingPage} variant="primary" size="lg" pulse>
         {label}
       </Button>
       <p className="text-[0.86rem] text-mist-500">

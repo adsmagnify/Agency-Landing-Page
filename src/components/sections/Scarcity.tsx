@@ -4,7 +4,7 @@ import { Check } from "lucide-react";
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { offerWindow } from "@/lib/constants";
+import { offerWindow, siteConfig } from "@/lib/constants";
 import { useOfferCountdown } from "@/components/layout/OfferBar";
 import { cn } from "@/lib/utils";
 
@@ -94,7 +94,7 @@ export function Scarcity() {
         </p>
 
         <div className="mt-[26px]">
-          <Button href="#apply" variant="primary" size="lg" pulse>
+          <Button href={siteConfig.contact.bookingPage} variant="primary" size="lg" pulse>
             Secure My Spot
           </Button>
         </div>

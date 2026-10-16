@@ -3,7 +3,7 @@ import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { offerStack } from "@/content/funnel";
-import { offerWindow } from "@/lib/constants";
+import { offerWindow, siteConfig } from "@/lib/constants";
 
 export function Programs() {
   return (
@@ -60,7 +60,7 @@ export function Programs() {
               🔒 Only {offerWindow.capacity} institutes this intake ·{" "}
               <b className="text-cyan-500">{offerWindow.remaining} spots left</b>
             </p>
-            <Button href="#apply" variant="primary" size="xl" pulse>
+            <Button href={siteConfig.contact.bookingPage} variant="primary" size="xl" pulse>
               Apply Now — Claim Your Spot →
             </Button>
             <p className="mt-3.5 text-[0.86rem] text-mist-500">

@@ -86,7 +86,7 @@ export function Footer() {
             {siteConfig.contact.phone}
           </a>
           <div className="pt-2">
-            <Button href="/#apply" variant="primary" size="nav">
+            <Button href={siteConfig.contact.bookingPage} variant="primary" size="nav">
               Book a Call
             </Button>
           </div>

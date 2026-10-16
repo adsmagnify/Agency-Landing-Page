@@ -140,7 +140,7 @@ export function Header() {
           </nav>
 
           <div className="hidden lg:block">
-            <Button href={sectionHref("#apply")} variant="primary" size="nav">
+            <Button href={siteConfig.contact.bookingPage} variant="primary" size="nav">
               Apply Now
             </Button>
           </div>
@@ -188,7 +188,7 @@ export function Header() {
                 })}
                 <div className="mt-2">
                   <Button
-                    href={sectionHref("#apply")}
+                    href={siteConfig.contact.bookingPage}
                     variant="primary"
                     size="lg"
                     className="w-full"

@@ -12,6 +12,7 @@ import {
   getCaseStudyPages,
 } from "@/content/case-studies";
 import { buildMetadata } from "@/lib/seo";
+import { siteConfig } from "@/lib/constants";
 
 export function generateStaticParams() {
   return caseStudies.map((study) => ({ slug: study.slug }));
@@ -76,7 +77,7 @@ export default async function CaseStudyPage({
         <CaseStudyBody pages={pages} />
 
         <div className="mt-20 flex flex-col items-center gap-4 pb-6 text-center sm:mt-24">
-          <Button href="/#apply" variant="primary" size="lg">
+          <Button href={siteConfig.contact.bookingPage} variant="primary" size="lg">
             Book My Free Strategy Call
           </Button>
           <Link

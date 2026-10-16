@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { siteConfig } from "@/lib/constants";
 import { Badge } from "@/components/ui/Badge";
 import { VslPlayer } from "@/components/ui/VslPlayer";
 
@@ -91,7 +92,7 @@ export function Hero() {
           </div>
 
           <div className="mt-8 flex w-full flex-col items-stretch justify-center gap-3.5 sm:w-auto sm:flex-row sm:items-center">
-            <Button href="#apply" variant="primary" size="lg">
+            <Button href={siteConfig.contact.bookingPage} variant="primary" size="lg">
               Book My Free Strategy Call
             </Button>
             <Button href="#solution" variant="ghost" size="lg">

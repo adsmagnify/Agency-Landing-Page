@@ -3,6 +3,7 @@ import { Check } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { founder } from "@/content/funnel";
+import { siteConfig } from "@/lib/constants";
 
 export function Founder() {
   return (
@@ -47,7 +48,7 @@ export function Founder() {
           </ul>
 
           <div className="mt-8">
-            <Button href="#apply" variant="primary" size="lg" pulse>
+            <Button href={siteConfig.contact.bookingPage} variant="primary" size="lg" pulse>
               Book My Free Strategy Call
             </Button>
           </div>

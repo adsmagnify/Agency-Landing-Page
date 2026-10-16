@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
-import { offerWindow } from "@/lib/constants";
+import { offerWindow, siteConfig } from "@/lib/constants";
 
 export function StickyCta() {
   const [visible, setVisible] = useState(false);
@@ -37,7 +37,7 @@ export function StickyCta() {
           </span>
           <span className="block">Free 45-min strategy call</span>
         </p>
-        <Button href="/#apply" variant="primary" size="nav" className="shrink-0">
+        <Button href={siteConfig.contact.bookingPage} variant="primary" size="nav" className="shrink-0">
           Book My Call
         </Button>
       </div>
