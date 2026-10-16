@@ -17,7 +17,9 @@ export function CalendlyEmbed({ url }: { url: string }) {
     const onMessage = (event: MessageEvent) => {
       if (event.origin !== "https://calendly.com") return;
       if (event.data?.event !== "calendly.event_scheduled") return;
-      window.location.assign(`${window.location.origin}/thank-you`);
+      window.location.assign(
+        `${window.location.origin}/thank-you${window.location.search}`
+      );
     };
 
     window.addEventListener("message", onMessage);
