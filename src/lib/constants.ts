@@ -57,8 +57,8 @@ export const navLinks = [
 ] as const;
 
 export const offerWindow = {
-  /** 30 Sep 2026, 23:59 IST — keep this honest and update when the intake changes. */
-  closeAt: new Date(2026, 8, 30, 23, 59, 0).getTime(),
+  /** 31 Oct 2026, 23:59 IST — keep this honest and update when the intake changes. */
+  closeAt: new Date("2026-10-31T23:59:00+05:30").getTime(),
   capacity: 8,
   filled: 5,
   remaining: 3,
