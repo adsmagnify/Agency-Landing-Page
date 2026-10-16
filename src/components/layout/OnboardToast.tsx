@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 
 const ONBOARDS = [
   {
@@ -17,11 +16,6 @@ const ONBOARDS = [
   {
     name: "Jeevan Sparsh",
     logo: "/clients/jeevan-sparsh.png",
-  },
-  {
-    name: "Whistling Woods International",
-    logo: "/clients/whistling-woods.png",
-    cover: true,
   },
 ] as const;
 
@@ -80,12 +74,7 @@ export function OnboardToast() {
                 alt=""
                 width={96}
                 height={96}
-                className={cn(
-                  "h-10 w-10",
-                  "cover" in current && current.cover
-                    ? "object-cover object-left"
-                    : "object-contain"
-                )}
+                className="h-10 w-10 object-contain"
               />
             </span>
             <p className="min-w-0 text-sm leading-snug">
