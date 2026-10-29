@@ -38,10 +38,9 @@ export default function BookPage() {
             leave with the answer. Free. No pitch.
           </p>
           <p className="mx-auto mt-4 max-w-[58ch] text-[0.95rem] font-medium leading-relaxed text-signal">
-            This is for institute owners who are serious about filling their next
-            batch. If you&apos;re just checking prices, or you can&apos;t put at
-            least ₹30,000/month into ads, this is not for you. We take only a few
-            institutes each intake.
+            This is for institute owners who are serious about filling their next batch. 
+            If you're just checking prices, or you can't put at least ₹30,000/month (AED 2000) into ads, this is not for you. 
+            We take only a few institutes each intake.
           </p>
         </div>
 
